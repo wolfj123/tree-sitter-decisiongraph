@@ -1,0 +1,110 @@
+==================
+basic TODO slot
+==================
+
+myslot : TODO.
+
+---
+(source_file
+    (slot
+        (identifier_simple)
+        (todo_value)))
+
+
+
+
+====================================
+basic TODO slot with line comment
+====================================
+
+
+myslot : TODO. <-- this is a comment
+
+---
+(source_file 
+    (slot 
+        (identifier_simple)
+        (todo_value)) 
+        (comment))
+
+
+
+
+====================================
+basic TODO slot with more line comments
+====================================
+
+<-- this is comment 1
+
+myslot : TODO. <-- this is comment 2
+
+<-- this is comment 3
+
+
+---
+(source_file (comment)
+    (slot 
+        (identifier_simple)
+        (todo_value)) 
+        (comment) (comment))
+
+
+
+
+====================================
+basic TODO slot with multi-line comments
+====================================
+
+myslot : TODO.  <* this is a 
+* multi line 
+* comment
+*>
+
+<* this is also
+* multi line 
+* comment *>
+
+---
+(source_file 
+    (slot 
+        (identifier_simple)
+        (todo_value)) 
+        (comment))
+
+
+
+====================================
+basic TODO slot with single line description
+====================================
+
+myslot [myslot] : TODO. 
+
+
+---
+(source_file
+    (slot
+        (identifier_with_desc 
+            (identifier_simple) 
+            (description))
+        (todo_value)))
+
+
+
+        
+
+====================================
+basic TODO slot with multi line description
+====================================
+
+myslot [line1
+line 2] : TODO. 
+
+
+---
+(source_file
+    (slot
+        (identifier_with_desc 
+            (identifier_simple) 
+            (description))
+        (todo_value)))
+
