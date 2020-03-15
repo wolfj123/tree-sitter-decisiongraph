@@ -77,8 +77,10 @@ sanity consider
 ]
 ---
 
-(decision_graph)
-                  
+(source_file (decision_graph (consider_node (node_id) (slot_sub_node (slot)) 
+(consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph 
+(todo_node)))))))
+
 ==================
 sanity set node
 ==================
