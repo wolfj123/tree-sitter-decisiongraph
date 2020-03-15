@@ -185,7 +185,7 @@ module.exports = grammar({
         "[", "#import", $.decision_graph_name, ":", $.file_path, "]"
       ),
 
-      file_path: $ => /[^<>"\|?*\n]*[^<>"\|?*\]\s]/,
+      file_path: $ => /[^<>"\|?*\[\]\n]*[^<>"\|?*\[\]\s]/,    //TODO: for now, we are not allowing [ ] in a file path
 
       decision_graph_name: $ => /[a-zA-Z0-9._\-\+]+/,
 
