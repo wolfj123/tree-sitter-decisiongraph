@@ -1,7 +1,9 @@
 //https://regex101.com/r/dU5fO8/73
-const alpha = /[^\s0-9;.,`"'|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
-const alpha_numeric = /[^\s;.,`"'|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
+const alpha = /[^+\s0-9;.,`"'|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
+const alpha_numeric = /[^+\s;.,`"'|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
 const string_regex = /[^;`|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
+//const free_text_char = "[a-zA-Z0-9._,/~?!()@#$%^&*_+-]"
+
 
 const PREC = {
   COMMENT: 1, // Prefer comments over regexes
@@ -40,14 +42,9 @@ module.exports = grammar({
 
       todo_node: $ => seq(
         "[", optional($.node_id), "todo", ":", optional($.free_text), "]" 
-        //"[", "todo", ":", "]" 
       ),  
 
-      //free_text: $ => /[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]*/,
-
       free_text: $ => /([a-zA-Z0-9._,/~?!()@#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s[a-zA-Z0-9._,/~?!()@#$%^&*_+-])+/,
-
-      //text_characters: $ => /[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]|\s/,
 
       ask_node: $ => seq(
           "[", optional($.node_id), "ask", ":", $.text_sub_node, optional($.terms_sub_node), $.answers_sub_node, "]"
@@ -89,32 +86,49 @@ module.exports = grammar({
         "[", optional($.node_id), "set", ":", $.assignment_slot, "]" 
       ),
 
-      // todo_node: $ => seq(
-      //   //"[", optional($.node_id), "todo", ":",optional($.free_text), "]" 
-      //   "[", "todo", ":", "]" 
-      // ),
-
       assignment_slot: $ => seq(
         choice(
           prec.left(seq($.assignment_slot, ";" , $.assignment_slot)),
-          $.atomic_assignment_slot,
-          $.aggregate_assignment_slot
+          prec(1,$.aggregate_assignment_slot),
+          prec(0,$.atomic_assignment_slot)
         )
       ),
 
-      atomic_assignment_slot: $ => seq(
-        $.slot, "=", $.slot_identifier
-      ),
-
       aggregate_assignment_slot: $ => seq(
-        $.slot, "+=", $.slot_identifier, repeat($.slot_identifier)
+        $.slot, "+=", $._slot_identifier, $._slot_values
       ),
 
+      atomic_assignment_slot: $ => seq(
+        $.slot, "=", $.slot_value
+      ),
+      
       slot: $ => seq(
-        $.slot_identifier, repeat(seq("/", $.slot_identifier))
+        $._slot_identifier, repeat(seq("/", $._slot_identifier))
       ),
 
-      slot_identifier: $ => {
+      //"{" <slot_value> ("," <slot_value>)* "}" | <slot_value> ("," <slot_value>)*
+      _slot_values: $ => choice(
+        seq(
+          "{",
+          $.slot_value,
+          repeat(seq(
+            ",",
+            $.slot_value  
+          )),
+          "}"
+        ),
+        seq(
+          $.slot_value,
+          repeat(seq(
+            ",",
+            $.slot_value  
+          ))
+        )
+      ),
+
+      slot_value: $ => $._slot_identifier,
+
+      _slot_identifier: $ => {
         return token(seq(alpha, repeat(alpha_numeric)))
       },
 
@@ -157,7 +171,7 @@ module.exports = grammar({
       ),
       
       consider_option_sub_node: $ => seq(
-        "{", $.slot_identifier, ":", $.decision_graph, "}" 
+        "{", $._slot_identifier, ":", $.decision_graph, "}" 
       ),
       
       when_answer_sub_node: $ => seq(

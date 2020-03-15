@@ -39,3 +39,36 @@ sanity ask node
                     (free_text) 
                     (decision_graph 
                         (todo_node)))))))
+
+
+                        
+==================
+sanity set node
+==================
+
+[set: DataTags/Mid1/Bottom1=b1a]
+---
+
+(source_file (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))))) 
+
+                        
+==================
+sanity set node 2
+==================
+
+[set: DataTags/Mid2/Bottom2+= b2b]
+---
+
+(source_file ) 
+
+
+==================
+sanity set node 3
+==================
+
+[set: DataTags/Mid1/Bottom1=b1a; DataTags/Mid2/Bottom2+={b2b, b2c}]
+
+---
+
+(source_file)
+

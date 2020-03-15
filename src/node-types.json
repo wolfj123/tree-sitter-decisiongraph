@@ -12,7 +12,7 @@
           "named": true
         },
         {
-          "type": "slot_identifier",
+          "type": "slot_value",
           "named": true
         }
       ]
@@ -115,7 +115,7 @@
           "named": true
         },
         {
-          "type": "slot_identifier",
+          "type": "slot_value",
           "named": true
         }
       ]
@@ -176,15 +176,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "decision_graph",
-          "named": true
-        },
-        {
-          "type": "slot_identifier",
           "named": true
         }
       ]
@@ -436,17 +432,7 @@
   {
     "type": "slot",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "slot_identifier",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "slot_sub_node",
@@ -462,6 +448,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "slot_value",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",
@@ -601,6 +592,10 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "--]",
     "named": false
   },
@@ -699,10 +694,6 @@
   {
     "type": "slot",
     "named": false
-  },
-  {
-    "type": "slot_identifier",
-    "named": true
   },
   {
     "type": "term",
