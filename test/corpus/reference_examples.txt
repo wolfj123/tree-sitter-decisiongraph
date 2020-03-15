@@ -17,54 +17,8 @@ ask node
     {no: [call: nonHuman] }}]
 
 ---
-
-(source_file 
-	(decision_graph 
-		(ask_node 
-			(text_sub_node 
-				(free_text)) 
-			(answers_sub_node 
-				(answer_sub_node 
-					(free_text) 
-					(decision_graph 
-						(set_node 
-							(assignment_slot 
-								(atomic_assignment_slot 
-									(slot) 
-									(slot_value)))) 
-					(call_node 
-						(node_id_value)))) 
-				(answer_sub_node 
-					(free_text) 
-					(decision_graph 
-						(call_node 
-							(node_id_value)))))) 
-		(ask_node 
-			(text_sub_node 
-				(free_text)) 
-			(terms_sub_node 
-				(term_sub_node 
-					(free_text) 
-					(free_text)) 
-				(term_sub_node 
-					(free_text) 
-					(free_text))) 
-			(answers_sub_node 
-				(answer_sub_node 
-					(free_text) 
-					(decision_graph 
-						(set_node 
-							(assignment_slot 
-							(atomic_assignment_slot 
-								(slot) 
-								(slot_value)))) 
-						(call_node 
-							(node_id_value)))) 
-				(answer_sub_node 
-					(free_text) 
-					(decision_graph 
-						(call_node 
-							(node_id_value))))))))
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (call_node))) (answer_sub_node (free_text) (decision_graph (call_node))))) (ask_node (text_sub_node (free_text)) (terms_sub_node (term_sub_node (free_text) (free_text)) (term_sub_node (free_text) (free_text))) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (call_node))) (answer_sub_node (free_text) (decision_graph (call_node)))))))
+						
 
 ==================
 ask yes no node
@@ -76,9 +30,7 @@ ask yes no node
     {yes: [call: healthSection]}}]
 
 ---
-
-(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (cal
-l_node (node_id_value))))))))
+(source_file (decision_graph (ask_node (node_id) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node)))))))
 
 
 ==================
@@ -100,9 +52,7 @@ call node
 
 ---
 
-(source_file (decision_graph (call_node (node_id)) (part_node (node_id) (decision_graph (set_node (node_id) (assignment_slot (atomic_assignment_slot (slot) (slo
-t_value)))) (ask_node (node_id) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node))))) (set_node (node_id) (assignment_slot (atomic_assignment_slot (slot) (slot_value))))))))
-
+(source_file (decision_graph (call_node (node_id)) (part_node (node_id) (decision_graph (set_node (node_id) (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (ask_node (node_id) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node))))) (set_node (node_id) (assignment_slot (atomic_assignment_slot (slot) (slot_value))))))))
 
 
 ==================
@@ -123,7 +73,7 @@ consider node
 ]
 ---
 
-(decision_graph)
+(source_file (comment) (decision_graph (consider_node (node_id) (slot_sub_node (slot)) (consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (call_node)))) (else_sub_node (comment) (decision_graph (call_node))))))
 
 
 ==================
@@ -139,7 +89,7 @@ when node
 
 ---
 
-(decision_graph)
+(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (decision_graph (call_node))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value)))) (decision_graph (call_node))) (else_sub_node (decision_graph (call_node))))))
 
 
 ==================
@@ -151,8 +101,7 @@ end node
 
 ---
 
-(decision_graph)
-
+(source_file (decision_graph (call_node (node_id)) (end_node (node_id))))
 
 ==================
 reject node
@@ -164,7 +113,7 @@ reject node
 
 ---
 
-(decision_graph)
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (reject_node (free_text))))))))
 
 
 ==================
@@ -179,7 +128,7 @@ section node
 
 ---
 
-(decision_graph)
+(source_file (decision_graph (section_node (node_id) (info_sub_node (free_text)) (comment) (decision_graph (todo_node)))))
 
 
 ==================
@@ -199,7 +148,7 @@ skipping
 
 ---
 
-(decision_graph)
+(source_file (decision_graph (section_node (info_sub_node (free_text)) (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (continue_node)))))))))
 
 
 ==================
@@ -213,53 +162,7 @@ set node
 
 ---
 
-(source_file 
-	(decision_graph 
-		(set_node 
-			(assignment_slot 
-				(atomic_assignment_slot 
-					(slot) 
-				  (slot_value)))) 
-		(set_node 
-			(assignment_slot 
-				(aggregate_assignment_slot 
-					(slot) 
-					(slot_value) 
-					(slot_value)))) 
-		(set_node 
-			(assignment_slot 
-				(assignment_slot 
-					(atomic_assignment_slot 
-					(slot) 
-					(slot_value))) 
-				(assignment_slot 
-					(aggregate_assignment_slot 
-						(slot) 
-						(slot_value) 
-						(slot_value))))) 
-		(set_node 
-			(assignment_slot 
-				(assignment_slot 
-					(atomic_assignment_slot 
-						(slot) 
-						(slot_value))) 
-			(assignment_slot 
-				(aggregate_assignment_slot 
-					(slot) 
-					(slot_value) 
-					(slot_value))))) 
-		(set_node 
-			(assignment_slot 
-				(assignment_slot 
-					(atomic_assignment_slot 
-						(slot) 
-						(slot_value))) 
-				(assignment_slot 
-					(aggregate_assignment_slot 
-						(slot) 
-						(slot_value) 
-						(slot_value)))))))
-
+(source_file (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (set_node (assignment_slot (aggregate_assignment_slot (slot) (slot_value) (slot_value)))) (set_node (assignment_slot (assignment_slot (atomic_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value) (slot_value))))) (set_node (assignment_slot (assignment_slot (atomic_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value) (slot_value))))) (set_node (assignment_slot (assignment_slot (atomic_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value) (slot_value)))))))
 
 ==================
 todo
@@ -268,8 +171,7 @@ todo
 
 ---
 
-(decision_graph)
-
+(source_file (decision_graph (todo_node (free_text))))
 
 
 ==================
@@ -294,8 +196,7 @@ todo2
 
 ---
 
-(decision_graph)
-
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node))))) (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node))))) (todo_node (free_text)) (end_node) (todo_node (node_id) (free_text)) (end_node) (todo_node (node_id) (free_text)) (end_node)))
 
 
 ==================
@@ -308,6 +209,6 @@ import
 
 ---
 
-(decision_graph)
+(source_file ) 
 
 

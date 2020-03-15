@@ -148,4 +148,4 @@ sanity import
 
 ---
 
-(decision_graph)
+(source_file (decision_graph (import_node (decision_graph_name) (file_path))))
