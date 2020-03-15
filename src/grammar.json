@@ -551,8 +551,11 @@
           "value": ":"
         },
         {
-          "type": "SYMBOL",
-          "name": "when_answer_sub_node"
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "when_answer_sub_node"
+          }
         },
         {
           "type": "CHOICE",
@@ -569,6 +572,31 @@
         {
           "type": "STRING",
           "value": "]"
+        }
+      ]
+    },
+    "when_answer_sub_node": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assignment_slot"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "decision_graph"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },
@@ -1105,31 +1133,6 @@
               "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "STRING",
-          "value": "}"
-        }
-      ]
-    },
-    "when_answer_sub_node": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "{"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "assignment_slot"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "decision_graph"
         },
         {
           "type": "STRING",

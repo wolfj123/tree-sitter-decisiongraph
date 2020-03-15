@@ -81,6 +81,23 @@ sanity consider
 (consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph 
 (todo_node)))))))
 
+
+==================
+sanity when node
+==================
+[when:
+  {Subjects+=livingPresons: [call: privacy]}
+  {Subjects+=deceasedPresons; Domains += medical: [call: privacy]}
+  {else:
+    [call: open-data]
+  }
+]
+
+---
+
+(decision_graph)
+
+
 ==================
 sanity set node
 ==================

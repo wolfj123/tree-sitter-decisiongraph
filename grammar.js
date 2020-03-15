@@ -99,7 +99,11 @@ module.exports = grammar({
       ),
 
       when_node: $ => seq(
-        "[", optional($.node_id), "when", ":", $.when_answer_sub_node, optional($.else_sub_node), "]"
+        "[", optional($.node_id), "when", ":", repeat1($.when_answer_sub_node), optional($.else_sub_node), "]" //TODO: it seems though that the java lib only allowys 1 when sub node
+      ),
+
+      when_answer_sub_node: $ => seq(
+        "{", $.assignment_slot, ":", $.decision_graph, "}" 
       ),
 
       section_node: $ => seq(
@@ -185,10 +189,6 @@ module.exports = grammar({
 
       info_sub_node: $ => seq(
         "{", optional($.node_id), "title", ":", optional($.free_text), "}" 
-      ),
-      
-      when_answer_sub_node: $ => seq(
-        "{", $.assignment_slot, ":", $.decision_graph, "}" 
       ),
 
       node_id: $ => seq(
