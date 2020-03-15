@@ -138,3 +138,14 @@ sanity reject node
 ---
 
 (source_file (decision_graph (reject_node (free_text))))
+
+
+==================
+sanity import
+==================
+
+[#import storage: aux/storage.dg ]
+
+---
+
+(decision_graph)

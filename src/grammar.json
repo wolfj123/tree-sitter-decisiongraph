@@ -649,6 +649,51 @@
         }
       ]
     },
+    "info_sub_node": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "node_id"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "title"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "free_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
     "continue_node": {
       "type": "SEQ",
       "members": [
@@ -1046,6 +1091,10 @@
         }
       ]
     },
+    "file_path": {
+      "type": "PATTERN",
+      "value": "[^<>\"\\|?*]*[^<>\"\\|?*\\]\\s]"
+    },
     "decision_graph_name": {
       "type": "PATTERN",
       "value": "[a-zA-Z0-9._\\-\\+]+"
@@ -1072,51 +1121,6 @@
         {
           "type": "STRING",
           "value": "text"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "free_text"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "}"
-        }
-      ]
-    },
-    "info_sub_node": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "{"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "node_id"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "title"
         },
         {
           "type": "STRING",
@@ -1243,10 +1247,6 @@
     {
       "type": "SYMBOL",
       "name": "_comment_block"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "file_path"
     }
   ],
   "inline": [],

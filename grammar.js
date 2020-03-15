@@ -185,6 +185,9 @@ module.exports = grammar({
         "[", "#import", $.decision_graph_name, ":", $.file_path, "]"
       ),
 
+      //file_path: $ => /[^<>"\|?*\]]+/
+      file_path: $ => /[^<>"\|?*]*[^<>"\|?*\]\s]/,
+
       decision_graph_name: $ => /[a-zA-Z0-9._\-\+]+/,
 
       text_sub_node: $ => seq(
@@ -207,12 +210,11 @@ module.exports = grammar({
 
       description: $ => token(prec(PREC.STRING, 
         seq('[', repeat(string_regex), ']'), 
-      )),      
+      ))
     },
 
     externals: $ => [
-      $._comment_block,
-      $.file_path
+      $._comment_block
     ]
     
   });
