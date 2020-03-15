@@ -31,7 +31,7 @@
           "named": true
         },
         {
-          "type": "mulit_line_free_text",
+          "type": "free_text",
           "named": true
         }
       ]
@@ -229,7 +229,47 @@
       "required": true,
       "types": [
         {
-          "type": "top_level_node",
+          "type": "ask_node",
+          "named": true
+        },
+        {
+          "type": "call_node",
+          "named": true
+        },
+        {
+          "type": "consider_node",
+          "named": true
+        },
+        {
+          "type": "continue_node",
+          "named": true
+        },
+        {
+          "type": "import_node",
+          "named": true
+        },
+        {
+          "type": "part_node",
+          "named": true
+        },
+        {
+          "type": "reject_node",
+          "named": true
+        },
+        {
+          "type": "section_node",
+          "named": true
+        },
+        {
+          "type": "set_node",
+          "named": true
+        },
+        {
+          "type": "todo_node",
+          "named": true
+        },
+        {
+          "type": "when_node",
           "named": true
         }
       ]
@@ -283,7 +323,7 @@
       "required": true,
       "types": [
         {
-          "type": "mulit_line_free_text",
+          "type": "free_text",
           "named": true
         },
         {
@@ -338,10 +378,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "mulit_line_free_text",
+          "type": "free_text",
           "named": true
         },
         {
@@ -440,10 +480,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "mulit_line_free_text",
+          "type": "free_text",
           "named": true
         }
       ]
@@ -477,7 +517,7 @@
       "required": true,
       "types": [
         {
-          "type": "mulit_line_free_text",
+          "type": "free_text",
           "named": true
         },
         {
@@ -493,69 +533,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "mulit_line_free_text",
+          "type": "free_text",
           "named": true
         },
         {
           "type": "node_id",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "top_level_node",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ask_node",
-          "named": true
-        },
-        {
-          "type": "call_node",
-          "named": true
-        },
-        {
-          "type": "consider_node",
-          "named": true
-        },
-        {
-          "type": "continue_node",
-          "named": true
-        },
-        {
-          "type": "import_node",
-          "named": true
-        },
-        {
-          "type": "part_node",
-          "named": true
-        },
-        {
-          "type": "reject_node",
-          "named": true
-        },
-        {
-          "type": "section_node",
-          "named": true
-        },
-        {
-          "type": "set_node",
-          "named": true
-        },
-        {
-          "type": "todo_node",
-          "named": true
-        },
-        {
-          "type": "when_node",
           "named": true
         }
       ]
@@ -688,7 +673,7 @@
     "named": true
   },
   {
-    "type": "mulit_line_free_text",
+    "type": "free_text",
     "named": true
   },
   {

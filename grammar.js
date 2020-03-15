@@ -21,9 +21,9 @@ module.exports = grammar({
       // TODO: add the actual grammar rules
       source_file: $ => $.decision_graph,
       
-      decision_graph: $ => repeat1($.top_level_node),
+      decision_graph: $ => repeat1($._top_level_node),
       
-      top_level_node: $ => 
+      _top_level_node: $ => 
         choice(
           $.ask_node, 
           $.continue_node, 
@@ -35,7 +35,19 @@ module.exports = grammar({
           $.part_node, 
           $.consider_node, 
           $.when_node, 
-          $.import_node),
+          $.import_node
+          ),
+
+      todo_node: $ => seq(
+        "[", optional($.node_id), "todo", ":", optional($.free_text), "]" 
+        //"[", "todo", ":", "]" 
+      ),  
+
+      //free_text: $ => /[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]*/,
+
+      free_text: $ => /([a-zA-Z0-9._,/~?!()@:#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]\s[a-zA-Z0-9._,/~?!()@:#$%^&*_+-])+/,
+
+      //text_characters: $ => /[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]|\s/,
 
       ask_node: $ => seq(
           "[", optional($.node_id), "ask", ":", $.text_sub_node, optional($.terms_sub_node), $.answers_sub_node, "]"
@@ -70,16 +82,17 @@ module.exports = grammar({
       ),
 
       reject_node: $ => seq(
-        "[", optional($.node_id), "reject", ":",$.mulit_line_free_text, "]" //TODO: mulit_line_free_text
+        "[", optional($.node_id), "reject", ":",optional($.free_text), "]" //TODO: free_text
       ),
 
       set_node: $ => seq(
-        "[", optional($.node_id), "set", ":", "]" //TODO: mulit_line_free_text
+        "[", optional($.node_id), "set", ":", "]" //TODO: free_text
       ),
 
-      todo_node: $ => seq(
-        "[", optional($.node_id), "todo", ":",$.mulit_line_free_text, "]" 
-      ),
+      // todo_node: $ => seq(
+      //   //"[", optional($.node_id), "todo", ":",optional($.free_text), "]" 
+      //   "[", "todo", ":", "]" 
+      // ),
 
       assignment_slot: $ => seq(
         choice(
@@ -112,11 +125,11 @@ module.exports = grammar({
       decision_graph_name: $ => /[a-zA-Z0-9._\-\+]+/,
 
       text_sub_node: $ => seq(
-        "{", $.node_id, "text", ":",$.mulit_line_free_text, "}" 
+        "{", $.node_id, "text", ":",optional($.free_text), "}" 
       ),
 
       info_sub_node: $ => seq(
-        "{", $.node_id, "title", ":",$.mulit_line_free_text, "}" 
+        "{", $.node_id, "title", ":",optional($.free_text), "}" 
       ),
 
       terms_sub_node: $ => seq(
@@ -124,7 +137,7 @@ module.exports = grammar({
       ),
 
       term_sub_node: $ => seq(
-        "{", $.mulit_line_free_text, ":", $.mulit_line_free_text, "}" 
+        "{", optional($.free_text), ":", optional($.free_text), "}" 
       ),
 
       answers_sub_node: $ => seq(
@@ -132,7 +145,7 @@ module.exports = grammar({
       ),
 
       answer_sub_node: $ => seq(
-        "{", $.mulit_line_free_text, ":", $.decision_graph, "}" 
+        "{", optional($.free_text), ":", $.decision_graph, "}" 
       ),  
 
       slot_sub_node: $ => seq(
@@ -160,9 +173,6 @@ module.exports = grammar({
       ),  
       
       node_id_value: $ => /[a-zA-Z0-9._\-\+]+/,
-
-
-      mulit_line_free_text : $ => /TODO/,
 
       comment: $ => prec(PREC.COMMENT, choice(
         seq('<--', /.*/), 

@@ -9,10 +9,10 @@
       "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
-        "name": "top_level_node"
+        "name": "_top_level_node"
       }
     },
-    "top_level_node": {
+    "_top_level_node": {
       "type": "CHOICE",
       "members": [
         {
@@ -60,6 +60,55 @@
           "name": "import_node"
         }
       ]
+    },
+    "todo_node": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "node_id"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "todo"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "free_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "free_text": {
+      "type": "PATTERN",
+      "value": "([a-zA-Z0-9._,/~?!()@:#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]\\s[a-zA-Z0-9._,/~?!()@:#$%^&*_+-])+"
     },
     "ask_node": {
       "type": "SEQ",
@@ -430,8 +479,16 @@
           "value": ":"
         },
         {
-          "type": "SYMBOL",
-          "name": "mulit_line_free_text"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "free_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -465,43 +522,6 @@
         {
           "type": "STRING",
           "value": ":"
-        },
-        {
-          "type": "STRING",
-          "value": "]"
-        }
-      ]
-    },
-    "todo_node": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "["
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "node_id"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "todo"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "mulit_line_free_text"
         },
         {
           "type": "STRING",
@@ -686,8 +706,16 @@
           "value": ":"
         },
         {
-          "type": "SYMBOL",
-          "name": "mulit_line_free_text"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "free_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -715,8 +743,16 @@
           "value": ":"
         },
         {
-          "type": "SYMBOL",
-          "name": "mulit_line_free_text"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "free_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -764,16 +800,32 @@
           "value": "{"
         },
         {
-          "type": "SYMBOL",
-          "name": "mulit_line_free_text"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "free_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
           "value": ":"
         },
         {
-          "type": "SYMBOL",
-          "name": "mulit_line_free_text"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "free_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -817,8 +869,16 @@
           "value": "{"
         },
         {
-          "type": "SYMBOL",
-          "name": "mulit_line_free_text"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "free_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -982,10 +1042,6 @@
     "node_id_value": {
       "type": "PATTERN",
       "value": "[a-zA-Z0-9._\\-\\+]+"
-    },
-    "mulit_line_free_text": {
-      "type": "PATTERN",
-      "value": "TODO"
     },
     "comment": {
       "type": "PREC",

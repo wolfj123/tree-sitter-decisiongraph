@@ -1,0 +1,18 @@
+
+==================
+sanity todo
+==================
+[ todo : ]
+
+---
+
+(source_file (decision_graph (todo_node)))
+
+==================
+sanity todo 2
+==================
+[ todo : test]
+
+---
+
+(source_file (decision_graph (todo_node (free_text))))
