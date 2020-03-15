@@ -1,14 +1,18 @@
 {
   "name": "tree-sitter-decisiongraph",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.0",
+  "description": "tree-sitter parser for the Decision-Graph language of PolicyModels",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wolfj123/tree-sitter-policyspace"
+  },
   "main": "index.js",
   "scripts": {
     "compile": "tree-sitter generate",
     "test": "tree-sitter test"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "nan": "^2.14.0"
   },
