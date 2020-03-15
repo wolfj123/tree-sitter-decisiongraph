@@ -158,9 +158,9 @@ end node
 reject node
 ==================
 
-[ask {text: Where the data obtained by breaking and entry?}
+[ask : {text: Where the data obtained by breaking and entry?}
   {answers:
-    {yes: [Reject: Cannot deposit data obtained by breaching the law.]}}]
+    {yes: [reject: Cannot deposit data obtained by breaching the law.]}}]
 
 ---
 
@@ -174,9 +174,7 @@ section node
 
 [>id< section:
   {title:Section title} <-- Optional
-  [ask: ]
-  [set: ]
-  [section: ... ]
+  [todo: ]
 ]
 
 ---
@@ -196,8 +194,6 @@ skipping
       {no: [continue]}
     }
   ]
-
-  ... handle case health issues ...
 
 ]
 
@@ -279,14 +275,14 @@ todo
 ==================
 todo2
 ==================
-[ask
+[ask:
   {text: Do the data contain health information?}
   {answers:
-    {yes: [call healthInfo]}}]
-[ask
+    {yes: [call :healthInfo]}}]
+[ask:
   {text: Do the data contain financial information?}
   {answers:
-    {yes: [call financialInfo]}}]
+    {yes: [call: financialInfo]}}]
 [todo: tag for data use agreements]
 [end]
 

@@ -95,7 +95,7 @@ sanity when node
 
 ---
 
-(decision_graph)
+(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (decision_graph (call_node))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value)))) (decision_graph (call_node))) (else_sub_node (decision_graph (call_node))))))
 
 
 ==================
@@ -128,3 +128,13 @@ sanity set node 3
 
 (source_file (decision_graph (set_node (assignment_slot (assignment_slot (atomic_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value) (slot_value)))))))
 
+
+==================
+sanity reject node
+==================
+
+[reject: Cannot deposit data obtained by breaching the law.]
+
+---
+
+(source_file (decision_graph (reject_node (free_text))))

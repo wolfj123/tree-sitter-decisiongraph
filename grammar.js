@@ -110,6 +110,10 @@ module.exports = grammar({
         "[", optional($.node_id), "section", ":", optional($.info_sub_node), $.decision_graph, "]"
       ),
 
+      info_sub_node: $ => seq(
+        "{", optional($.node_id), "title", ":", optional($.free_text), "}" 
+      ),
+
       continue_node: $ => seq(
         "[", optional($.node_id), "continue", "]"
       ),
@@ -123,7 +127,7 @@ module.exports = grammar({
       ),
 
       reject_node: $ => seq(
-        "[", optional($.node_id), "reject", ":",optional($.free_text), "]" 
+        "[", optional($.node_id), "reject", ":", optional($.free_text), "]" 
       ),
 
       set_node: $ => seq(
@@ -185,10 +189,6 @@ module.exports = grammar({
 
       text_sub_node: $ => seq(
         "{", optional($.node_id), "text", ":", optional($.free_text), "}" 
-      ),
-
-      info_sub_node: $ => seq(
-        "{", optional($.node_id), "title", ":", optional($.free_text), "}" 
       ),
 
       node_id: $ => seq(
