@@ -20,7 +20,6 @@ module.exports = grammar({
     ],
   
     rules: {
-      // TODO: add the actual grammar rules
       source_file: $ => $.decision_graph,
       
       decision_graph: $ => repeat1($._top_level_node),
@@ -95,7 +94,7 @@ module.exports = grammar({
       ),
 
       aggregate_assignment_slot: $ => seq(
-        $.slot, "+=", $._slot_identifier, $._slot_values
+        $.slot, "+=", $._slot_values
       ),
 
       atomic_assignment_slot: $ => seq(
@@ -106,7 +105,6 @@ module.exports = grammar({
         $._slot_identifier, repeat(seq("/", $._slot_identifier))
       ),
 
-      //"{" <slot_value> ("," <slot_value>)* "}" | <slot_value> ("," <slot_value>)*
       _slot_values: $ => choice(
         seq(
           "{",
@@ -126,7 +124,9 @@ module.exports = grammar({
         )
       ),
 
-      slot_value: $ => $._slot_identifier,
+      slot_value: $ => {
+        return token(seq(alpha, repeat(alpha_numeric)))
+      },
 
       _slot_identifier: $ => {
         return token(seq(alpha, repeat(alpha_numeric)))
@@ -147,7 +147,7 @@ module.exports = grammar({
       ),
 
       terms_sub_node: $ => seq(
-        "{", optional($.node_id), "term", ":", repeat($.term_sub_node), "}" //should this really be 0-or-more instead of 1-or-more?
+        "{", optional($.node_id), "term", ":", repeat($.term_sub_node), "}" //TODO: should this really be 0-or-more instead of 1-or-more?
       ),
 
       term_sub_node: $ => seq(

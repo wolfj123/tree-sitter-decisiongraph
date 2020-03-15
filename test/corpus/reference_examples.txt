@@ -169,7 +169,52 @@ set node
 
 ---
 
-(decision_graph)
+(source_file 
+	(decision_graph 
+		(set_node 
+			(assignment_slot 
+				(atomic_assignment_slot 
+					(slot) 
+				  (slot_value)))) 
+		(set_node 
+			(assignment_slot 
+				(aggregate_assignment_slot 
+					(slot) 
+					(slot_value) 
+					(slot_value)))) 
+		(set_node 
+			(assignment_slot 
+				(assignment_slot 
+					(atomic_assignment_slot 
+					(slot) 
+					(slot_value))) 
+				(assignment_slot 
+					(aggregate_assignment_slot 
+						(slot) 
+						(slot_value) 
+						(slot_value))))) 
+		(set_node 
+			(assignment_slot 
+				(assignment_slot 
+					(atomic_assignment_slot 
+						(slot) 
+						(slot_value))) 
+			(assignment_slot 
+				(aggregate_assignment_slot 
+					(slot) 
+					(slot_value) 
+					(slot_value))))) 
+		(set_node 
+			(assignment_slot 
+				(assignment_slot 
+					(atomic_assignment_slot 
+						(slot) 
+						(slot_value))) 
+				(assignment_slot 
+					(aggregate_assignment_slot 
+						(slot) 
+						(slot_value) 
+						(slot_value)))))))
 
 
 ==================

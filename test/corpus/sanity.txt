@@ -56,10 +56,10 @@ sanity set node
 sanity set node 2
 ==================
 
-[set: DataTags/Mid2/Bottom2+= b2b]
+[set: name += val]
 ---
 
-(source_file ) 
+(source_file (decision_graph (set_node (assignment_slot (aggregate_assignment_slot (slot) (slot_value))))))  
 
 
 ==================
@@ -70,5 +70,5 @@ sanity set node 3
 
 ---
 
-(source_file)
+(source_file (decision_graph (set_node (assignment_slot (assignment_slot (atomic_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value) (slot_value)))))))
 

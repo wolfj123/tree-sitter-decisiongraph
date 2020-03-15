@@ -593,10 +593,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_slot_identifier"
-        },
-        {
-          "type": "SYMBOL",
           "name": "_slot_values"
         }
       ]
@@ -707,8 +703,23 @@
       ]
     },
     "slot_value": {
-      "type": "SYMBOL",
-      "name": "_slot_identifier"
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^+\\s0-9;.,`\"'|<=>\\\\\\[\\]{}\\uFEFF\\u2060\\u200B\\u00A0]|\\\\u[0-9a-fA-F]{4}|\\\\u\\{[0-9a-fA-F]+\\}"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^+\\s;.,`\"'|<=>\\\\\\[\\]{}\\uFEFF\\u2060\\u200B\\u00A0]|\\\\u[0-9a-fA-F]{4}|\\\\u\\{[0-9a-fA-F]+\\}"
+            }
+          }
+        ]
+      }
     },
     "_slot_identifier": {
       "type": "TOKEN",
