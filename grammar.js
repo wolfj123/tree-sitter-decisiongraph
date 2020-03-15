@@ -1,8 +1,185 @@
+//https://regex101.com/r/dU5fO8/73
+const alpha = /[^\s0-9;.,`"'|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
+const alpha_numeric = /[^\s;.,`"'|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
+const string_regex = /[^;`|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
+
+const PREC = {
+  COMMENT: 1, // Prefer comments over regexes
+  STRING: 2,  // In a string, prefer string characters over comments
+};
+
+
 module.exports = grammar({
-    name: 'YOUR_LANGUAGE_NAME',
+    name: 'decisiongraph',
+
+    extras: $ => [
+      $.comment,
+      /[\s\uFEFF\u2060\u200B\u00A0]/
+    ],
   
     rules: {
       // TODO: add the actual grammar rules
-      source_file: $ => 'hello'
-    }
+      source_file: $ => $.decision_graph,
+      
+      decision_graph: $ => repeat($.top_level_node),
+      
+      top_level_node: $ => 
+        choice(
+          $.ask_node, 
+          $.continue_node, 
+          $.todo_node, 
+          $.call_node, 
+          $.reject_node, 
+          $.set_node, 
+          $.section_node, 
+          $.part_node, 
+          $.consider_node, 
+          $.when_node, 
+          $.import_node),
+
+      ask_node: $ => seq(
+          "[", optional($.node_id), "ask", ":", $.text_sub_node, optional($.terms_sub_node), $.answers_sub_node, "]"
+      ),
+      
+      call_node: $ => seq(
+        "[", optional($.node_id), "call", ":", optional(seq($.decision_graph_name, ">")), $.node_id_value, "]"
+      ),
+
+      consider_node: $ => seq(
+        "[", optional($.node_id), "consider", ":", $.slot_sub_node, $.consider_answers_sub_node, optional($.else_sub_node), "]"
+      ),
+
+      when_node: $ => seq(
+        "[", optional($.node_id), "when", ":", $.when_answer_sub_node, optional($.else_sub_node), "]"
+      ),
+
+      section_node: $ => seq(
+        "[", optional($.node_id), "section", ":", optional($.info_sub_node), $.decision_graph, "]"
+      ),
+
+      continue_node: $ => seq(
+        "[", optional($.node_id), "continue", "]"
+      ),
+
+      part_node: $ => seq(
+        "[--", $.node_id, $.decision_graph, "--]"
+      ),
+
+      end_node: $ => seq(
+        "[",optional($.node_id), "end", "]"
+      ),
+
+      reject_node: $ => seq(
+        "[", optional($.node_id), "reject", ":",$.mulit_line_free_text, "]" //TODO: mulit_line_free_text
+      ),
+
+      set_node: $ => seq(
+        "[", optional($.node_id), "set", ":", "]" //TODO: mulit_line_free_text
+      ),
+
+      todo_node: $ => seq(
+        "[", optional($.node_id), "todo", ":",$.mulit_line_free_text, "]" 
+      ),
+
+      assignment_slot: $ => seq(
+        choice(
+          seq($.assignment_slot, ";" , $.assignment_slot),
+          $.atomic_assignment_slot,
+          $.aggregate_assignment_slot
+        )
+      ),
+
+      atomic_assignment_slot: $ => seq(
+        $.slot, "=", $.slot_identifier
+      ),
+
+      aggregate_assignment_slot: $ => seq(
+        $.slot, "+=", $.slot_identifier, repeat($.slot_identifier)
+      ),
+
+      slot: $ => seq(
+        $.slot_identifier, repeat(seq("/"), $.slot_identifier)
+      ),
+
+      slot_identifier: $ => {
+        return token(seq(alpha, repeat(alpha_numeric)))
+      },
+
+      import_node: $ => seq(
+        "[", "#import", $.decision_graph_name, ":", $.file_path, "]"
+      ),
+
+      decision_graph_name: $ => /[a-zA-Z0-9._\-\+]+/,
+
+      text_sub_node: $ => seq(
+        "{", $.node_id, "text", ":",$.mulit_line_free_text, "}" 
+      ),
+
+      info_sub_node: $ => seq(
+        "{", $.node_id, "title", ":",$.mulit_line_free_text, "}" 
+      ),
+
+      terms_sub_node: $ => seq(
+        "{", $.node_id, "term", ":", repeat($.term_sub_node), "}" //should this really be 0-or-more instead of 1-or-more?
+      ),
+
+      term_sub_node: $ => seq(
+        "{", $.mulit_line_free_text, ":", $.mulit_line_free_text, "}" 
+      ),
+
+      answers_sub_node: $ => seq(
+        "{", "answers", ":", repeat1($.answer_sub_node), "}" 
+      ),
+
+      answer_sub_node: $ => seq(
+        "{", $.mulit_line_free_text, ":", $.decision_graph, "}" 
+      ),  
+
+      slot_sub_node: $ => seq(
+        "{", "slot", ":", $.slot, "}"
+      ),
+      
+      consider_options_sub_node: $ => seq(
+        "{", "options", ":", repeat1($.consider_option_sub_node), "}" 
+      ),
+      
+      consider_option_sub_node: $ => seq(
+        "{", $.slot_identifier, ":", $.decision_graph, "}" 
+      ),
+      
+      when_answer_sub_node: $ => seq(
+        "{", $.assignment_slot, ":", $.decision_graph, "}" 
+      ),
+
+      else_sub_node: $ => seq(
+        "{", "else", ":", $.decision_graph, "}" 
+      ),
+
+      node_id: $ => seq(
+        ">", $.node_id_value, "<"
+      ),  
+      
+      node_id_value: $ => /[a-zA-Z0-9._\-\+]+/,
+
+
+      mulit_line_free_text : $ => /TODO/,
+
+      comment: $ => prec(PREC.COMMENT, choice(
+        seq('<--', /.*/), 
+        $._comment_block
+      )),
+
+      comment_line: $ => 
+        seq('<--', /.*/),
+
+      description: $ => token(prec(PREC.STRING, 
+        seq('[', repeat(string_regex), ']'), 
+      )),      
+    },
+
+    externals: $ => [
+      $._comment_block,
+      $.file_path
+    ]
+    
   });

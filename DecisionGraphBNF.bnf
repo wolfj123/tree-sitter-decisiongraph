@@ -1,7 +1,6 @@
 DECISION GRAPH BNF
 
 # TODO
-# not sure what to do with the comments and whitespaces
 # import node path formats are unclear right now
 # not sure if multi line free text in nodes is allowed. assuming yes
 
@@ -22,8 +21,58 @@ DECISION GRAPH BNF
 									| <when_node>
 									| <import_node>
 									
-								
 
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/ask-node.html
+<ask_node>						::= "[" [<node_id>] "ask" ":" <text_sub_node> [<terms_sub_node>] <answers_sub_node> "]"
+
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/call-node.html
+<call_node>						::= "[" [<node_id>] "call" ":" [<decision_graph_name>">"]<node_id_value> "]"
+
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/consider-when-node.html
+<consider_node>					::= "[" [<node_id>] "consider" ":" <slot_sub_node> <consider_answers_sub_node> [<else_sub_node>] "]"
+
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/consider-when-node.html
+<when_node>						::= "[" [<node_id>] "when" ":" <when_answer_sub_node> [<else_sub_node>] "]"
+
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/section-node.html
+<section_node>					::= "[" [<node_id>] "section" ":" [<info_sub_node>] <decision_graph> "]"
+
+<continue_node>					::= "[" [<node_id>] "continue" "]"
+
+<part_node>						::= "[--" <node_id> <decision_graph> "--]"
+
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/end-node.html
+<end_node>						::= "[" [<node_id>] "end" "]"
+
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/reject-node.html
+<reject_node>					::= "[" [<node_id>] "reject" ":" <mulit_line_free_text> "]"
+
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/set-node.html
+<set_node> 						::= "[" [<node_id>] "set" ":" "]"
+
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/todo-node.html
+<todo_node>	 					::= "["  [<node_id>] "todo" ":" <mulit_line_free_text> "]"
+
+
+<assignment_slot>				::= (<assignment_slot> ";" <assignment_slot>) | <atomic_assignment_slot> | <aggregate_assignment_slot>
+
+<atomic_assignment_slot>		::= <slot> "=" <slot_identifier>
+
+<aggregate_assignment_slot>		::=  <slot> "+=" <slot_identifier> ("," <slot_identifier>)*
+
+<slot> 							::= <slot_identifier> ("/"<slot_identifier>)*
+
+<slot_identifier> 				::= <letter> (<letter> | <digit>)*  #should be the same one from policy space identifier
+
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/import-node.html  
+#I think there is a mistake in the example. should maybe be "storage>node" instead of "aux>node"
+<import_node>  					::= "[" "#import" <decision_graph_name> ":" <file_path>	"]"
+
+<decision_graph_name>			::= (<letter> | <digit> | "._-+" )+
+
+<file_path>						::= a legal file path
+
+								
 <text_sub_node>					::= "{" "text" ":" <mulit_line_free_text> "}"
 
 <info_sub_node>					::= "{" "title" ":" <mulit_line_free_text> "}"
@@ -47,60 +96,15 @@ DECISION GRAPH BNF
 <else_sub_node>					::= "{" "else" ":" <decision_graph> "}"
  
 
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/ask-node.html
-<ask_node>						::= "[" [<node_id>] "ask" ":" <text_sub_node> [<text_sub_node>] <answers_sub_node> "]"
 
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/call-node.html
-<call_node>						::= "[" [<node_id>] "call" ":" [<decision_graph_name>">"]<node_id> "]"
-
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/consider-when-node.html
-<consider_node>					::= "[" [<node_id>] "consider" ":" <slot_sub_node> <consider_answers_sub_node> [<else_sub_node>] "]"
-
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/consider-when-node.html
-<when_node>						::= "[" [<node_id>] "when" ":" <when_answer_sub_node> [<else_sub_node>] "]"
-
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/section-node.html
-<section_node>					::= "[" [<node_id>] "section" ":" [<info_sub_node>] <decision_graph> "]"
-
-<continue_node>					::= "[" [<node_id>] "continue" "]"
-
-<part_node>						::= "[--" <node_id> <decision_graph> "--]"
-
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/end-node.html
-<end_node>						::= "[" [<node_id>] "end" "]"
-
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/reject-node.html
-<reject_node>					::= "[" [<node_id>] "reject" ":" <mulit_line_free_text> "]"
-
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/set-node.html
-<set_node> 						::= "[" [<node_id>] "set" ":"  "]"
-
-<assignment_slot>				::= (<assignment_slot> ";" <assignment_slot>) | <atomic_assignment_slot> | <aggregate_assignment_slot>
-
-<atomic_assignment_slot>		::= <slot> "=" <slot_identifier>
-
-<aggregate_assignment_slot>		::=  <slot> "+=" <slot_identifier> ("," <slot_identifier>)*
-
-<slot> 							::= <slot_identifier> ("/"<slot_identifier>)*
-
-<slot_identifier> 				::= <letter> (<letter> | <digit>)*  #should be the same one from policy space identifier
-
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/import-node.html  
-#I think there is a mistake in the example. should maybe be "storage>node" instead of "aux>node"
-<import_node>  					::= "[" "#import" <decision_graph_name> ":" <file_path>	"]"
-
-<decision_graph_name>			::= TODO
-
-<file_path>						::= TODO
-
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/todo-node.html
-<todo_node>	 					::= "["  [<node_id>] "todo" ":" <mulit_line_free_text> "]"
 
 <mulit_line_free_text>			::= (<free_text> | <new_line>)*
 
 <free_text>						::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-")+ 
 
-<node_id> 						::= ">" <letter> (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-" )*	"<"
+<node_id> 						::= ">" <node_id_value>	"<"
+
+<node_id_value>					::= (<letter> | <digit> | "._-+" )+     # <letter> (<letter> | <digit> | "._-+" )*
 
 <letter> 						::= "a" | "b" | ... | "z" | "A" | ... | "Z"
 
