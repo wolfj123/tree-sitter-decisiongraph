@@ -15,7 +15,8 @@ ask node
 
 ---
 
-(decision_graph)
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (ERROR)) (call_node 
+(node_id_value)))) (answer_sub_node (free_text) (decision_graph (call_node (node_id_value))))))) (ERROR (text_sub_node (free_text)) (terms_sub_node (ERROR) (term_sub_node (free_text) (free_text)) (term_sub_node (free_text) (free_text)))))
 
 
 ==================
@@ -119,7 +120,7 @@ reject node
 
 
 ==================
-section
+section node
 ==================
 
 
@@ -158,7 +159,7 @@ skipping
 
 
 ==================
-set
+set node
 ==================
 [set: DataTags/Mid1/Bottom1=b1a]
 [set: DataTags/Mid2/Bottom2+=b2b, b2c]

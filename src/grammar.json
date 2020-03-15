@@ -108,7 +108,7 @@
     },
     "free_text": {
       "type": "PATTERN",
-      "value": "([a-zA-Z0-9._,/~?!()@:#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]\\s[a-zA-Z0-9._,/~?!()@:#$%^&*_+-])+"
+      "value": "([a-zA-Z0-9._,/~?!()@#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@#$%^&*_+-]\\s[a-zA-Z0-9._,/~?!()@#$%^&*_+-])+"
     },
     "ask_node": {
       "type": "SEQ",
@@ -524,6 +524,10 @@
           "value": ":"
         },
         {
+          "type": "SYMBOL",
+          "name": "assignment_slot"
+        },
+        {
           "type": "STRING",
           "value": "]"
         }
@@ -694,8 +698,16 @@
           "value": "{"
         },
         {
-          "type": "SYMBOL",
-          "name": "node_id"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "node_id"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -731,8 +743,16 @@
           "value": "{"
         },
         {
-          "type": "SYMBOL",
-          "name": "node_id"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "node_id"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -768,8 +788,16 @@
           "value": "{"
         },
         {
-          "type": "SYMBOL",
-          "name": "node_id"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "node_id"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",

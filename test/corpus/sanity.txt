@@ -11,8 +11,31 @@ sanity todo
 ==================
 sanity todo 2
 ==================
-[ todo : test]
+[todo : test]
 
 ---
 
 (source_file (decision_graph (todo_node (free_text))))
+
+
+==================
+sanity ask node
+==================
+
+[ask:
+    {text: txt }
+    {answers: {yes: [todo : ] } }
+]
+
+---
+
+(source_file 
+    (decision_graph 
+        (ask_node 
+            (text_sub_node 
+                (free_text)) 
+            (answers_sub_node 
+                (answer_sub_node 
+                    (free_text) 
+                    (decision_graph 
+                        (todo_node)))))))

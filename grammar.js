@@ -45,7 +45,7 @@ module.exports = grammar({
 
       //free_text: $ => /[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]*/,
 
-      free_text: $ => /([a-zA-Z0-9._,/~?!()@:#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]\s[a-zA-Z0-9._,/~?!()@:#$%^&*_+-])+/,
+      free_text: $ => /([a-zA-Z0-9._,/~?!()@#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s[a-zA-Z0-9._,/~?!()@#$%^&*_+-])+/,
 
       //text_characters: $ => /[a-zA-Z0-9._,/~?!()@:#$%^&*_+-]|\s/,
 
@@ -82,11 +82,11 @@ module.exports = grammar({
       ),
 
       reject_node: $ => seq(
-        "[", optional($.node_id), "reject", ":",optional($.free_text), "]" //TODO: free_text
+        "[", optional($.node_id), "reject", ":",optional($.free_text), "]" 
       ),
 
       set_node: $ => seq(
-        "[", optional($.node_id), "set", ":", "]" //TODO: free_text
+        "[", optional($.node_id), "set", ":", $.assignment_slot, "]" 
       ),
 
       // todo_node: $ => seq(
@@ -125,15 +125,15 @@ module.exports = grammar({
       decision_graph_name: $ => /[a-zA-Z0-9._\-\+]+/,
 
       text_sub_node: $ => seq(
-        "{", $.node_id, "text", ":",optional($.free_text), "}" 
+        "{", optional($.node_id), "text", ":", optional($.free_text), "}" 
       ),
 
       info_sub_node: $ => seq(
-        "{", $.node_id, "title", ":",optional($.free_text), "}" 
+        "{", optional($.node_id), "title", ":", optional($.free_text), "}" 
       ),
 
       terms_sub_node: $ => seq(
-        "{", $.node_id, "term", ":", repeat($.term_sub_node), "}" //should this really be 0-or-more instead of 1-or-more?
+        "{", optional($.node_id), "term", ":", repeat($.term_sub_node), "}" //should this really be 0-or-more instead of 1-or-more?
       ),
 
       term_sub_node: $ => seq(

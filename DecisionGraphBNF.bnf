@@ -47,12 +47,12 @@ DECISION GRAPH BNF
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/reject-node.html
 <reject_node>					::= "[" [<node_id>] "reject" ":" <mulit_line_free_text> "]"
 
-#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/set-node.html
-<set_node> 						::= "[" [<node_id>] "set" ":" "]"
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/todo-node.html
 <todo_node>	 					::= "["  [<node_id>] "todo" ":" <mulit_line_free_text> "]"
 
+#https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/set-node.html
+<set_node> 						::= "[" [<node_id>] "set" ":"  "]"
 
 <assignment_slot>				::= (<assignment_slot> ";" <assignment_slot>) | <atomic_assignment_slot> | <aggregate_assignment_slot>
 
