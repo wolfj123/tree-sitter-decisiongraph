@@ -209,6 +209,6 @@ import
 
 ---
 
-(source_file ) 
+(source_file (decision_graph (import_node (decision_graph_name) (file_path)) (call_node (decision_graph_name)) (call_node (decision_graph_name))))
 
 

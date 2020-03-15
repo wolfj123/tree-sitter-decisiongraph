@@ -1093,7 +1093,7 @@
     },
     "file_path": {
       "type": "PATTERN",
-      "value": "[^<>\"\\|?*]*[^<>\"\\|?*\\]\\s]"
+      "value": "[^<>\"\\|?*\\n]*[^<>\"\\|?*\\]\\s]"
     },
     "decision_graph_name": {
       "type": "PATTERN",
