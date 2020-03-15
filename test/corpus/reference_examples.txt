@@ -1,0 +1,223 @@
+==================
+ask node
+==================
+
+[ask:
+  {text: Do the data concern living persons?}
+  {answers:
+    {yes: [set: livingPersons=yes][call: privacySection ] }
+    {no: [call: nonHuman] }}]
+[ask:
+  {text: Do the data contain personally identifying information, as defined under HIPAA?}
+  {terms:
+    {Personally identifying information: This means the name, address, fingerprints...}
+    {HIPAA: Health Insurance Portability and Accountability Act}}]
+
+---
+
+(decision_graph)
+
+
+==================
+ask yes no node
+==================
+
+[>q1< ask:
+  {text: Do the data contain health information?}
+  {answers:
+    {yes: [call: healthSection]}}]
+[>q2< ask:
+  {text: Do the data contain criminal records?}
+
+---
+
+(decision_graph)
+
+
+==================
+call node
+==================
+
+[>n1< call: p1]
+[>n2< ask: ...]
+
+[-->p1<
+  [>n3< set: hello=world]
+  [>n4< ask:
+    {text: continue?}
+    {no: [end]}
+  ]
+  [>n5< set: lorem=ipsum]
+--]
+
+---
+
+(decision_graph)
+
+
+
+==================
+consider node
+==================
+
+<* SubjectType may have been collected above *>
+[>cn< consider:
+  {slot: SubjectType}
+  {options:
+    {mineral: [set: Harm=minimal]}
+    {animal:  [set: Harm=moderate]}
+    {human:   [call: assesHumanHarm]}
+  }
+  {else: <-- this part is optional
+    [call: open-data]
+  }
+]
+---
+
+(decision_graph)
+
+
+==================
+when node
+==================
+[when:
+  {Subjects+=livingPresons: [call: privacy]}
+  {Subjects+=deceasedPresons; Domains += medical: [call: privacy]}
+  {else:
+    [call: open-data]
+  }
+]
+
+---
+
+(decision_graph)
+
+
+==================
+end node
+==================
+
+[>n1< call: n2]
+[>n2< end]
+
+---
+
+(decision_graph)
+
+
+==================
+reject node
+==================
+
+[ask {text: Where the data obtained by breaking and entry?}
+  {answers:
+    {yes: [Reject: Cannot deposit data obtained by breaching the law.]}}]
+
+---
+
+(decision_graph)
+
+
+==================
+section
+==================
+
+
+[>id< section:
+  {title:Section title} <-- Optional
+  [ask: ]
+  [set: ]
+  [section: ... ]
+]
+
+---
+
+(decision_graph)
+
+
+==================
+skipping
+==================
+
+[section:
+  {title: Health Data}
+  [ask:
+    {text: Are there any related health issues?}
+    {answers:
+      {no: [continue]}
+    }
+  ]
+
+  ... handle case health issues ...
+
+]
+
+---
+
+(decision_graph)
+
+
+==================
+set
+==================
+[set: DataTags/Mid1/Bottom1=b1a]
+[set: DataTags/Mid2/Bottom2+=b2b, b2c]
+[set: DataTags/Mid1/Bottom1=b1a; DataTags/Mid2/Bottom2+={b2b, b2c}]
+[set: Mid1/Bottom1=b1a; Mid2/Bottom2+=b2b, b2c]
+[set: Bottom1=b1a; Mid2/Bottom2+=b2b, b2c]
+
+---
+
+(decision_graph)
+
+
+==================
+todo
+==================
+[todo: implement tagging for financial data]
+
+---
+
+(decision_graph)
+
+
+
+==================
+todo2
+==================
+[ask
+  {text: Do the data contain health information?}
+  {answers:
+    {yes: [call healthInfo]}}]
+[ask
+  {text: Do the data contain financial information?}
+  {answers:
+    {yes: [call financialInfo]}}]
+[todo: tag for data use agreements]
+[end]
+
+[>healthInfo< todo: implement!]
+[end]
+
+[>financialInfo< todo: implement!]
+[end]
+
+---
+
+(decision_graph)
+
+
+
+==================
+import
+==================
+
+[#import storage: aux/storage.dg]
+[call: aux>encryption]
+[call: aux>open-formats]
+
+---
+
+(decision_graph)
+
+
