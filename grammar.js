@@ -21,7 +21,7 @@ module.exports = grammar({
       // TODO: add the actual grammar rules
       source_file: $ => $.decision_graph,
       
-      decision_graph: $ => repeat($.top_level_node),
+      decision_graph: $ => repeat1($.top_level_node),
       
       top_level_node: $ => 
         choice(
@@ -46,7 +46,7 @@ module.exports = grammar({
       ),
 
       consider_node: $ => seq(
-        "[", optional($.node_id), "consider", ":", $.slot_sub_node, $.consider_answers_sub_node, optional($.else_sub_node), "]"
+        "[", optional($.node_id), "consider", ":", $.slot_sub_node, $.consider_options_sub_node, optional($.else_sub_node), "]"
       ),
 
       when_node: $ => seq(
@@ -83,7 +83,7 @@ module.exports = grammar({
 
       assignment_slot: $ => seq(
         choice(
-          seq($.assignment_slot, ";" , $.assignment_slot),
+          prec.left(seq($.assignment_slot, ";" , $.assignment_slot)),
           $.atomic_assignment_slot,
           $.aggregate_assignment_slot
         )
@@ -98,7 +98,7 @@ module.exports = grammar({
       ),
 
       slot: $ => seq(
-        $.slot_identifier, repeat(seq("/"), $.slot_identifier)
+        $.slot_identifier, repeat(seq("/", $.slot_identifier))
       ),
 
       slot_identifier: $ => {

@@ -29,7 +29,7 @@ DECISION GRAPH BNF
 <call_node>						::= "[" [<node_id>] "call" ":" [<decision_graph_name>">"]<node_id_value> "]"
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/consider-when-node.html
-<consider_node>					::= "[" [<node_id>] "consider" ":" <slot_sub_node> <consider_answers_sub_node> [<else_sub_node>] "]"
+<consider_node>					::= "[" [<node_id>] "consider" ":" <slot_sub_node> <consider_options_sub_node> [<else_sub_node>] "]"
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/consider-when-node.html
 <when_node>						::= "[" [<node_id>] "when" ":" <when_answer_sub_node> [<else_sub_node>] "]"
