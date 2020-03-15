@@ -884,7 +884,7 @@
         },
         {
           "type": "STRING",
-          "value": "term"
+          "value": "terms"
         },
         {
           "type": "STRING",

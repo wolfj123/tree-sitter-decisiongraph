@@ -147,7 +147,7 @@ module.exports = grammar({
       ),
 
       terms_sub_node: $ => seq(
-        "{", optional($.node_id), "term", ":", repeat($.term_sub_node), "}" //TODO: should this really be 0-or-more instead of 1-or-more?
+        "{", optional($.node_id), "terms", ":", repeat($.term_sub_node), "}" //TODO: should this really be 0-or-more instead of 1-or-more?
       ),
 
       term_sub_node: $ => seq(

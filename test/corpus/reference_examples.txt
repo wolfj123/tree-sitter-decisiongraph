@@ -11,13 +11,60 @@ ask node
   {text: Do the data contain personally identifying information, as defined under HIPAA?}
   {terms:
     {Personally identifying information: This means the name, address, fingerprints...}
-    {HIPAA: Health Insurance Portability and Accountability Act}}]
+    {HIPAA: Health Insurance Portability and Accountability Act}}
+  {answers:
+    {yes: [set: livingPersons=yes][call: privacySection ] }
+    {no: [call: nonHuman] }}]
 
 ---
 
-(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (ERROR)) (call_node 
-(node_id_value)))) (answer_sub_node (free_text) (decision_graph (call_node (node_id_value))))))) (ERROR (text_sub_node (free_text)) (terms_sub_node (ERROR) (term_sub_node (free_text) (free_text)) (term_sub_node (free_text) (free_text)))))
-
+(source_file 
+	(decision_graph 
+		(ask_node 
+			(text_sub_node 
+				(free_text)) 
+			(answers_sub_node 
+				(answer_sub_node 
+					(free_text) 
+					(decision_graph 
+						(set_node 
+							(assignment_slot 
+								(atomic_assignment_slot 
+									(slot) 
+									(slot_value)))) 
+					(call_node 
+						(node_id_value)))) 
+				(answer_sub_node 
+					(free_text) 
+					(decision_graph 
+						(call_node 
+							(node_id_value)))))) 
+		(ask_node 
+			(text_sub_node 
+				(free_text)) 
+			(terms_sub_node 
+				(term_sub_node 
+					(free_text) 
+					(free_text)) 
+				(term_sub_node 
+					(free_text) 
+					(free_text))) 
+			(answers_sub_node 
+				(answer_sub_node 
+					(free_text) 
+					(decision_graph 
+						(set_node 
+							(assignment_slot 
+							(atomic_assignment_slot 
+								(slot) 
+								(slot_value)))) 
+						(call_node 
+							(node_id_value)))) 
+				(answer_sub_node 
+					(free_text) 
+					(decision_graph 
+						(call_node 
+							(node_id_value))))))))
 
 ==================
 ask yes no node
