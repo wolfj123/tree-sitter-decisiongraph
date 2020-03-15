@@ -20,6 +20,7 @@ DECISION GRAPH BNF
 									| <consider_node>
 									| <when_node>
 									| <import_node>
+									| <end_node>
 									
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/ask-node.html

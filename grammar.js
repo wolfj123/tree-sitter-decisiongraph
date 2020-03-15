@@ -36,7 +36,8 @@ module.exports = grammar({
           $.part_node, 
           $.consider_node, 
           $.when_node, 
-          $.import_node
+          $.import_node,
+          $.end_node
           ),
 
       todo_node: $ => seq(
@@ -49,12 +50,52 @@ module.exports = grammar({
           "[", optional($.node_id), "ask", ":", $.text_sub_node, optional($.terms_sub_node), $.answers_sub_node, "]"
       ),
       
+      terms_sub_node: $ => seq(
+        "{", optional($.node_id), "terms", ":", repeat($.term_sub_node), "}" //TODO: should this really be 0-or-more instead of 1-or-more?
+      ),
+
+      term_sub_node: $ => seq(
+        "{", optional($.free_text), ":", optional($.free_text), "}" 
+      ),
+
+      answers_sub_node: $ => seq(
+        "{", "answers", ":", repeat1($.answer_sub_node), "}" 
+      ),
+
+      // answers_sub_node: $ => seq(
+      //   "{", "answers", ":", choice($.answer_yes_no_node, seq($.answer_sub_node,repeat1($.answer_sub_node))), "}" 
+      // ),
+
+      // answer_yes_no_node: $=> choice(
+      //   "{", choice("yes", "no"), ":", $.decision_graph, "}"
+      // ),
+
+      answer_sub_node: $ => seq(
+        "{", optional($.free_text), ":", $.decision_graph, "}" 
+      ),  
+
       call_node: $ => seq(
-        "[", optional($.node_id), "call", ":", optional(seq($.decision_graph_name, ">")), $.node_id_value, "]"
+        "[", optional($.node_id), "call", ":", optional(seq($.decision_graph_name, ">")), $._node_id_value, "]"
       ),
 
       consider_node: $ => seq(
         "[", optional($.node_id), "consider", ":", $.slot_sub_node, $.consider_options_sub_node, optional($.else_sub_node), "]"
+      ),
+
+      slot_sub_node: $ => seq(
+        "{", "slot", ":", $.slot, "}"
+      ),
+
+      consider_options_sub_node: $ => seq(
+        "{", "options", ":", repeat1($.consider_option_sub_node), "}" 
+      ),
+      
+      consider_option_sub_node: $ => seq(
+        "{", $.slot_value, ":", $.decision_graph, "}" 
+      ),
+      
+      else_sub_node: $ => seq(
+        "{", "else", ":", $.decision_graph, "}" 
       ),
 
       when_node: $ => seq(
@@ -145,48 +186,16 @@ module.exports = grammar({
       info_sub_node: $ => seq(
         "{", optional($.node_id), "title", ":", optional($.free_text), "}" 
       ),
-
-      terms_sub_node: $ => seq(
-        "{", optional($.node_id), "terms", ":", repeat($.term_sub_node), "}" //TODO: should this really be 0-or-more instead of 1-or-more?
-      ),
-
-      term_sub_node: $ => seq(
-        "{", optional($.free_text), ":", optional($.free_text), "}" 
-      ),
-
-      answers_sub_node: $ => seq(
-        "{", "answers", ":", repeat1($.answer_sub_node), "}" 
-      ),
-
-      answer_sub_node: $ => seq(
-        "{", optional($.free_text), ":", $.decision_graph, "}" 
-      ),  
-
-      slot_sub_node: $ => seq(
-        "{", "slot", ":", $.slot, "}"
-      ),
-      
-      consider_options_sub_node: $ => seq(
-        "{", "options", ":", repeat1($.consider_option_sub_node), "}" 
-      ),
-      
-      consider_option_sub_node: $ => seq(
-        "{", $._slot_identifier, ":", $.decision_graph, "}" 
-      ),
       
       when_answer_sub_node: $ => seq(
         "{", $.assignment_slot, ":", $.decision_graph, "}" 
       ),
 
-      else_sub_node: $ => seq(
-        "{", "else", ":", $.decision_graph, "}" 
-      ),
-
       node_id: $ => seq(
-        ">", $.node_id_value, "<"
+        ">", $._node_id_value, "<"
       ),  
       
-      node_id_value: $ => /[a-zA-Z0-9._\-\+]+/,
+      _node_id_value: $ => /[a-zA-Z0-9._\-\+]+/,
 
       comment: $ => prec(PREC.COMMENT, choice(
         seq('<--', /.*/), 

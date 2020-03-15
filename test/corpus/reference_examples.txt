@@ -74,12 +74,11 @@ ask yes no node
   {text: Do the data contain health information?}
   {answers:
     {yes: [call: healthSection]}}]
-[>q2< ask:
-  {text: Do the data contain criminal records?}
 
 ---
 
-(decision_graph)
+(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (cal
+l_node (node_id_value))))))))
 
 
 ==================
@@ -87,20 +86,22 @@ call node
 ==================
 
 [>n1< call: p1]
-[>n2< ask: ...]
 
 [-->p1<
   [>n3< set: hello=world]
   [>n4< ask:
     {text: continue?}
-    {no: [end]}
+    {answers : 
+      {no: [end]}
+    }
   ]
   [>n5< set: lorem=ipsum]
 --]
 
 ---
 
-(decision_graph)
+(source_file (decision_graph (call_node (node_id)) (part_node (node_id) (decision_graph (set_node (node_id) (assignment_slot (atomic_assignment_slot (slot) (slo
+t_value)))) (ask_node (node_id) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node))))) (set_node (node_id) (assignment_slot (atomic_assignment_slot (slot) (slot_value))))))))
 
 
 

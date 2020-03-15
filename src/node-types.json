@@ -127,7 +127,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "decision_graph_name",
@@ -135,10 +135,6 @@
         },
         {
           "type": "node_id",
-          "named": true
-        },
-        {
-          "type": "node_id_value",
           "named": true
         }
       ]
@@ -176,11 +172,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "decision_graph",
+          "named": true
+        },
+        {
+          "type": "slot_value",
           "named": true
         }
       ]
@@ -241,6 +241,10 @@
           "named": true
         },
         {
+          "type": "end_node",
+          "named": true
+        },
+        {
           "type": "import_node",
           "named": true
         },
@@ -292,6 +296,21 @@
     }
   },
   {
+    "type": "end_node",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "node_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "import_node",
     "named": true,
     "fields": {},
@@ -331,21 +350,6 @@
   },
   {
     "type": "node_id",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "node_id_value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "node_id_value",
     "named": true,
     "fields": {}
   },

@@ -19,6 +19,15 @@ sanity todo 2
 
 
 ==================
+sanity end
+==================
+[ end ]
+
+---
+
+(source_file (decision_graph (end_node)))
+
+==================
 sanity ask node
 ==================
 
@@ -39,9 +48,37 @@ sanity ask node
                     (free_text) 
                     (decision_graph 
                         (todo_node)))))))
-
-
                         
+==================
+sanity ask node yes no
+==================
+
+
+  [>n4< ask:
+    {text: continue?}
+    {answers: {no: [end]}}
+  ]
+
+---
+
+(source_file (decision_graph (ask_node (node_id) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node)))))))
+
+
+
+==================
+sanity consider
+==================
+
+[>cn< consider:
+  {slot: aSlot}
+  {options:
+    {mineral: [todo:]}
+  }
+]
+---
+
+(decision_graph)
+                  
 ==================
 sanity set node
 ==================
