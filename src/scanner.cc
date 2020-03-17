@@ -71,13 +71,6 @@ extern "C" bool tree_sitter_decisiongraph_external_scanner_scan_comment_block(
     return false;
 }
 
-extern "C" bool tree_sitter_decisiongraph_external_scanner_scan_filepath(
-  void *payload,
-  TSLexer *lexer,
-  const bool *valid_symbols
-) {
-  return false;
-}
 
 extern "C" bool tree_sitter_decisiongraph_external_scanner_scan(
   void *payload,
@@ -88,8 +81,7 @@ extern "C" bool tree_sitter_decisiongraph_external_scanner_scan(
     if (valid_symbols[COMMENT_BLOCK]) {
       return tree_sitter_decisiongraph_external_scanner_scan_comment_block(payload, lexer, valid_symbols);
     }
-    else if(valid_symbols[FILE_PATH]) {
-      return tree_sitter_decisiongraph_external_scanner_scan_filepath(payload, lexer, valid_symbols);
+    else {
+      return false;
     }
-    return false;
 }

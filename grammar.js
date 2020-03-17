@@ -2,7 +2,6 @@
 const alpha = /[^:\s0-9;.,`"'|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
 const alpha_numeric = /[^+:\s;.,`"'|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
 const string_regex = /[^;`|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
-//const free_text_char = "[a-zA-Z0-9._,/~?!()@#$%^&*_+-]"
 
 
 const PREC = {
@@ -61,14 +60,6 @@ module.exports = grammar({
       answers_sub_node: $ => seq(
         "{", "answers", ":", repeat1($.answer_sub_node), "}" 
       ),
-
-      // answers_sub_node: $ => seq(
-      //   "{", "answers", ":", choice($.answer_yes_no_node, seq($.answer_sub_node,repeat1($.answer_sub_node))), "}" 
-      // ),
-
-      // answer_yes_no_node: $=> choice(
-      //   "{", choice("yes", "no"), ":", $.decision_graph, "}"
-      // ),
 
       answer_sub_node: $ => seq(
         "{", optional($.free_text), ":", $.decision_graph, "}" 
