@@ -49,6 +49,10 @@ module.exports = grammar({
           "[", optional($.node_id), "ask", ":", $.text_sub_node, optional($.terms_sub_node), $.answers_sub_node, "]"
       ),
       
+      text_sub_node: $ => seq(
+        "{", optional($.node_id), "text", ":", optional($.free_text), "}" 
+      ),
+      
       terms_sub_node: $ => seq(
         "{", optional($.node_id), "terms", ":", repeat($.term_sub_node), "}" //TODO: should this really be 0-or-more instead of 1-or-more?
       ),
@@ -179,10 +183,6 @@ module.exports = grammar({
       file_path: $ => /[^<>"\|?*\[\]\n]*[^<>"\|?*\[\]\s]/,    //TODO: for now, we are not allowing [ ] in a file path
 
       decision_graph_name: $ => /[a-zA-Z0-9._\-\+]+/,
-
-      text_sub_node: $ => seq(
-        "{", optional($.node_id), "text", ":", optional($.free_text), "}" 
-      ),
 
       node_id: $ => seq(
         ">", $._node_id_value, "<"
