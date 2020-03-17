@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tree_sitter_YOUR_LANGUAGE_NAME_binding", "tree_sitter_YOUR_LANGUAGE_NAME_binding.vcxproj", "{9ABAD8CD-6982-C07D-5D31-CEBF92481493}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tree_sitter_decisiongraph_binding", "tree_sitter_decisiongraph_binding.vcxproj", "{9ABAD8CD-6982-C07D-5D31-CEBF92481493}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
