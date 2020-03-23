@@ -17,7 +17,7 @@ ask node
     {no: [call: nonHuman] }}]
 
 ---
-(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (call_node))) (answer_sub_node (free_text) (decision_graph (call_node))))) (ask_node (text_sub_node (free_text)) (terms_sub_node (term_sub_node (free_text) (free_text)) (term_sub_node (free_text) (free_text))) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (call_node))) (answer_sub_node (free_text) (decision_graph (call_node)))))))
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (call_node (node_id_value)))) (answer_sub_node (free_text) (decision_graph (call_node (node_id_value)))))) (ask_node (text_sub_node (free_text)) (terms_sub_node (term_sub_node (free_text) (free_text)) (term_sub_node (free_text) (free_text))) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value))))  (call_node (node_id_value)))) (answer_sub_node (free_text) (decision_graph (call_node (node_id_value))))))))
 						
 
 ==================
@@ -30,8 +30,7 @@ ask yes no node
     {yes: [call: healthSection]}}]
 
 ---
-(source_file (decision_graph (ask_node (node_id) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node)))))))
-
+(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_id_value))))))))
 
 ==================
 call node
@@ -52,8 +51,7 @@ call node
 
 ---
 
-(source_file (decision_graph (call_node (node_id)) (part_node (node_id) (decision_graph (set_node (node_id) (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (ask_node (node_id) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node))))) (set_node (node_id) (assignment_slot (atomic_assignment_slot (slot) (slot_value))))))))
-
+(source_file (decision_graph (call_node (node_id (node_id_value)) (node_id_value)) (part_node (node_id (node_id_value)) (decision_graph (set_node (node_id (node_id_value)) (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node))))) (set_node (node_id (node_id_value)) (assignment_slot (atomic_assignment_slot (slot) (slot_value))))))))
 
 ==================
 consider node
@@ -73,8 +71,7 @@ consider node
 ]
 ---
 
-(source_file (comment) (decision_graph (consider_node (node_id) (slot_sub_node (slot)) (consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (call_node)))) (else_sub_node (comment) (decision_graph (call_node))))))
-
+(source_file (comment) (decision_graph (consider_node (node_id (node_id_value)) (slot_sub_node (slot)) (consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (call_node (node_id_value))))) (else_sub_node (comment) (decision_graph (call_node (node_id_value)))))))
 
 ==================
 when node
@@ -89,8 +86,7 @@ when node
 
 ---
 
-(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (decision_graph (call_node))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value)))) (decision_graph (call_node))) (else_sub_node (decision_graph (call_node))))))
-
+(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (decision_graph (call_node (node_id_value)))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value)))) (decision_graph (call_node (node_id_value)))) (else_sub_node (decision_graph (call_node (node_id_value)))))))
 
 ==================
 end node
@@ -101,7 +97,7 @@ end node
 
 ---
 
-(source_file (decision_graph (call_node (node_id)) (end_node (node_id))))
+ (source_file (decision_graph (call_node (node_id (node_id_value)) (node_id_value)) (end_node (node_id (node_id_value)))))
 
 ==================
 reject node
@@ -115,7 +111,6 @@ reject node
 
 (source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (reject_node (free_text))))))))
 
-
 ==================
 section node
 ==================
@@ -128,8 +123,7 @@ section node
 
 ---
 
-(source_file (decision_graph (section_node (node_id) (info_sub_node (free_text)) (comment) (decision_graph (todo_node)))))
-
+(source_file (decision_graph (section_node (node_id (node_id_value)) (info_sub_node (free_text)) (comment) (decision_graph (todo_node)))))
 
 ==================
 skipping
@@ -149,7 +143,6 @@ skipping
 ---
 
 (source_file (decision_graph (section_node (info_sub_node (free_text)) (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (continue_node)))))))))
-
 
 ==================
 set node
@@ -196,8 +189,7 @@ todo2
 
 ---
 
-(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node))))) (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node))))) (todo_node (free_text)) (end_node) (todo_node (node_id) (free_text)) (end_node) (todo_node (node_id) (free_text)) (end_node)))
-
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_id_value)))))) (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_id_value)))))) (todo_node (free_text)) (end_node) (todo_node (node_id (node_id_value)) (free_text)) (end_node) (todo_node (node_id (node_id_value)) (free_text)) (end_node)))
 
 ==================
 import
@@ -209,6 +201,32 @@ import
 
 ---
 
-(source_file (decision_graph (import_node (decision_graph_name) (file_path)) (call_node (decision_graph_name)) (call_node (decision_graph_name))))
+(source_file (decision_graph (import_node (decision_graph_name) (file_path)) (call_node (decision_graph_name) (node_id_value)) (call_node (decision_graph_name) (node_id_value))))
 
+==================
+import dogs and cats
+==================
+
+[#import dogs: dogs.dg]
+[#import cats: cats.dg]
+
+[>q-order< ask:
+  {text: Do the dogs first?}
+  {answers:
+      {yes: [call: dogs>dog][call: cats>cat]}
+      {no:  [call: cats>cat][call:dogs>dog]}
+  }
+]
+[todo: specify mice]
+[>sec-frogs< section:
+  {title: Add frogs}
+  [todo: Add frog 1]
+  [todo: Add frog 2]
+]
+[set: Rice=Full]
+[end]
+
+---
+
+(source_file (decision_graph (import_node (decision_graph_name) (file_path)) (import_node (decision_graph_name) (file_path)) (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (decision_graph_name) (node_id_value)) (call_node (decision_graph_name) (node_id_value)))) (answer_sub_node (free_text) (decision_graph (call_node (decision_graph_name) (node_id_value)) (call_node (decision_graph_name) (node_id_value)))))) (todo_node (free_text)) (section_node (node_id (node_id_value)) (info_sub_node (free_text)) (decision_graph (todo_node (free_text)) (todo_node (free_text)))) (set_node (assignment_slot (atomic_assignment_slot (slot) (slot_value)))) (end_node)))
 

@@ -404,7 +404,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_node_id_value"
+          "name": "node_id_value"
         },
         {
           "type": "STRING",
@@ -1153,7 +1153,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_node_id_value"
+          "name": "node_id_value"
         },
         {
           "type": "STRING",
@@ -1161,7 +1161,7 @@
         }
       ]
     },
-    "_node_id_value": {
+    "node_id_value": {
       "type": "PATTERN",
       "value": "[a-zA-Z0-9._\\-\\+]+"
     },

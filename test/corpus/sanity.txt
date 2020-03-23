@@ -61,7 +61,7 @@ sanity ask node yes no
 
 ---
 
-(source_file (decision_graph (ask_node (node_id) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node)))))))
+ (source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node)))))))
 
 
 
@@ -77,9 +77,7 @@ sanity consider
 ]
 ---
 
-(source_file (decision_graph (consider_node (node_id) (slot_sub_node (slot)) 
-(consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph 
-(todo_node)))))))
+(source_file (decision_graph (consider_node (node_id (node_id_value)) (slot_sub_node (slot)) (consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph (todo_node)))))))
 
 
 ==================
@@ -95,7 +93,8 @@ sanity when node
 
 ---
 
-(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (decision_graph (call_node))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value)))) (decision_graph (call_node))) (else_sub_node (decision_graph (call_node))))))
+(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (decision_graph (call_node
+ (node_id_value)))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot) (slot_value)))) (decision_graph (call_node (node_id_value)))) (else_sub_node (decision_graph (call_node (node_id_value)))))))
 
 
 ==================

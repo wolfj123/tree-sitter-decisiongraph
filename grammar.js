@@ -70,7 +70,7 @@ module.exports = grammar({
       ),  
 
       call_node: $ => seq(
-        "[", optional($.node_id), "call", ":", optional(seq($.decision_graph_name, ">")), $._node_id_value, "]"
+        "[", optional($.node_id), "call", ":", optional(seq($.decision_graph_name, ">")), $.node_id_value, "]"
       ),
 
       consider_node: $ => seq(
@@ -185,10 +185,10 @@ module.exports = grammar({
       decision_graph_name: $ => /[a-zA-Z0-9._\-\+]+/,
 
       node_id: $ => seq(
-        ">", $._node_id_value, "<"
+        ">", $.node_id_value, "<"
       ),  
       
-      _node_id_value: $ => /[a-zA-Z0-9._\-\+]+/,
+      node_id_value: $ => /[a-zA-Z0-9._\-\+]+/,
 
       comment: $ => prec(PREC.COMMENT, choice(
         seq('<--', /.*/), 
