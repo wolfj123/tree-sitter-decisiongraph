@@ -2,7 +2,6 @@ DECISION GRAPH BNF
 
 # TODO
 # import node path formats are unclear right now
-# not sure if multi line free text in nodes is allowed. assuming yes
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/index.html
 <decision_graph> 				::= <top_level_node>*
@@ -80,7 +79,7 @@ DECISION GRAPH BNF
 
 <atomic_assignment_slot>		::= <slot> "=" <slot_value>
 
-<aggregate_assignment_slot>		::=  <slot> "+=" <slot_values>  #<slot_identifier> ("," <slot_identifier>)*
+<aggregate_assignment_slot>		::=  <slot> "+=" <slot_values> 
 
 <slot_values>					::= "{" <slot_value> ("," <slot_value>)* "}" | <slot_value> ("," <slot_value>)*
 
@@ -88,10 +87,9 @@ DECISION GRAPH BNF
 
 <slot> 							::= <slot_identifier> ("/"<slot_identifier>)*
 
-<slot_identifier> 				::= <letter> (<letter> | <digit>)*  #should be the same one from policy space identifier
+<slot_identifier> 				::= <letter> (<letter> | <digit>)* 
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/import-node.html  
-#I think there is a mistake in the example. should maybe be "storage>node" instead of "aux>node"
 <import_node>  					::= "[" "#import" <decision_graph_name> ":" <file_path>	"]"
 
 <decision_graph_name>			::= (<letter> | <digit> | "._-+" )+
@@ -104,7 +102,7 @@ DECISION GRAPH BNF
 
 <node_id> 						::= ">" <node_id_value>	"<"
 
-<node_id_value>					::= (<letter> | <digit> | "._-+" )+     # <letter> (<letter> | <digit> | "._-+" )*
+<node_id_value>					::= (<letter> | <digit> | "._-+" )+   
 
 <letter> 						::= "a" | "b" | ... | "z" | "A" | ... | "Z"
 
