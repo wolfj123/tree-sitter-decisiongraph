@@ -54,7 +54,7 @@ DECISION GRAPH BNF
 <else_sub_node>					::= "{" "else" ":" <decision_graph> "}"
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/consider-when-node.html
-<when_node>						::= "[" [<node_id>] "when" ":" <when_answer_sub_node> [<else_sub_node>] "]"
+<when_node>						::= "[" [<node_id>] "when" ":" <when_answer_sub_node>+ [<else_sub_node>] "]"
 
 <when_answer_sub_node>			::= "{" <assignment_slot> ":" <decision_graph> "}"
 
