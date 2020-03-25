@@ -1,6 +1,6 @@
 # Build dir
 build/
-demo/
+demo/node_modules
 
 # Logs
 logs
