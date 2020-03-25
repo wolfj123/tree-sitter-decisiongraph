@@ -21,62 +21,89 @@
   {
     "type": "answer_sub_node",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "decision_graph",
-          "named": true
-        },
-        {
-          "type": "free_text",
-          "named": true
-        }
-      ]
+    "fields": {
+      "answer": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "free_text",
+            "named": true
+          }
+        ]
+      },
+      "graph": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "decision_graph",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "answers_sub_node",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "answer_sub_node",
-          "named": true
-        }
-      ]
+    "fields": {
+      "answers": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "answer_sub_node",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "ask_node",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "answers_sub_node",
-          "named": true
-        },
-        {
-          "type": "node_id",
-          "named": true
-        },
-        {
-          "type": "terms_sub_node",
-          "named": true
-        },
-        {
-          "type": "text_sub_node",
-          "named": true
-        }
-      ]
+    "fields": {
+      "answers": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "answers_sub_node",
+            "named": true
+          }
+        ]
+      },
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      },
+      "terms": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "terms_sub_node",
+            "named": true
+          }
+        ]
+      },
+      "text": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text_sub_node",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -124,19 +151,32 @@
   {
     "type": "call_node",
     "named": true,
-    "fields": {},
+    "fields": {
+      "graph": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "decision_graph_name",
+            "named": true
+          }
+        ]
+      },
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "decision_graph_name",
-          "named": true
-        },
-        {
-          "type": "node_id",
-          "named": true
-        },
         {
           "type": "node_id_value",
           "named": true
@@ -147,7 +187,18 @@
   {
     "type": "consider_node",
     "named": true,
-    "fields": {},
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -158,10 +209,6 @@
         },
         {
           "type": "else_sub_node",
-          "named": true
-        },
-        {
-          "type": "node_id",
           "named": true
         },
         {
@@ -208,16 +255,17 @@
   {
     "type": "continue_node",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "node_id",
-          "named": true
-        }
-      ]
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -302,16 +350,17 @@
   {
     "type": "end_node",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "node_id",
-          "named": true
-        }
-      ]
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -336,17 +385,24 @@
   {
     "type": "info_sub_node",
     "named": true,
-    "fields": {},
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
           "type": "free_text",
-          "named": true
-        },
-        {
-          "type": "node_id",
           "named": true
         }
       ]
@@ -394,17 +450,24 @@
   {
     "type": "reject_node",
     "named": true,
-    "fields": {},
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
           "type": "free_text",
-          "named": true
-        },
-        {
-          "type": "node_id",
           "named": true
         }
       ]
@@ -413,7 +476,18 @@
   {
     "type": "section_node",
     "named": true,
-    "fields": {},
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -425,10 +499,6 @@
         {
           "type": "info_sub_node",
           "named": true
-        },
-        {
-          "type": "node_id",
-          "named": true
         }
       ]
     }
@@ -436,17 +506,24 @@
   {
     "type": "set_node",
     "named": true,
-    "fields": {},
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "assignment_slot",
-          "named": true
-        },
-        {
-          "type": "node_id",
           "named": true
         }
       ]
@@ -495,9 +572,20 @@
   {
     "type": "term_sub_node",
     "named": true,
-    "fields": {},
+    "fields": {
+      "term": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "free_text",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -510,55 +598,76 @@
   {
     "type": "terms_sub_node",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "node_id",
-          "named": true
-        },
-        {
-          "type": "term_sub_node",
-          "named": true
-        }
-      ]
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      },
+      "terms": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "term_sub_node",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "text_sub_node",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "free_text",
-          "named": true
-        },
-        {
-          "type": "node_id",
-          "named": true
-        }
-      ]
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      },
+      "text": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "free_text",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "todo_node",
     "named": true,
-    "fields": {},
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
           "type": "free_text",
-          "named": true
-        },
-        {
-          "type": "node_id",
           "named": true
         }
       ]
@@ -586,17 +695,24 @@
   {
     "type": "when_node",
     "named": true,
-    "fields": {},
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "node_id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
           "type": "else_sub_node",
-          "named": true
-        },
-        {
-          "type": "node_id",
           "named": true
         },
         {

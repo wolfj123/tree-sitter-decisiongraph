@@ -40,41 +40,41 @@ module.exports = grammar({
           ),
 
       todo_node: $ => seq(
-        "[", optional($.node_id), "todo", ":", optional($.free_text), "]" 
+        "[", field('id', optional($.node_id)), "todo", ":", optional($.free_text), "]" 
       ),  
 
       free_text: $ => /([a-zA-Z0-9._,/~?!()@#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s[a-zA-Z0-9._,/~?!()@#$%^&*_+-])+/,
 
       ask_node: $ => seq(
-          "[", optional($.node_id), "ask", ":", $.text_sub_node, optional($.terms_sub_node), $.answers_sub_node, "]"
+          "[", field('id', optional($.node_id)), "ask", ":", field('text', $.text_sub_node), field('terms', optional($.terms_sub_node)), field('answers', $.answers_sub_node), "]"
       ),
       
       text_sub_node: $ => seq(
-        "{", optional($.node_id), "text", ":", optional($.free_text), "}" 
+        "{", field('id', optional($.node_id)), "text", ":", field('text', optional($.free_text)), "}" 
       ),
       
       terms_sub_node: $ => seq(
-        "{", optional($.node_id), "terms", ":", repeat($.term_sub_node), "}" //TODO: should this really be 0-or-more instead of 1-or-more?
+        "{", field('id', optional($.node_id)), "terms", ":", field('terms', repeat($.term_sub_node)), "}" //TODO: should this really be 0-or-more instead of 1-or-more?
       ),
 
       term_sub_node: $ => seq(
-        "{", optional($.free_text), ":", optional($.free_text), "}" 
+        "{", optional($.free_text), ":", field('term', optional($.free_text)), "}" 
       ),
 
       answers_sub_node: $ => seq(
-        "{", "answers", ":", repeat1($.answer_sub_node), "}" 
+        "{", "answers", ":", field('answers', repeat1($.answer_sub_node)), "}" 
       ),
 
       answer_sub_node: $ => seq(
-        "{", optional($.free_text), ":", $.decision_graph, "}" 
+        "{", field('answer', optional($.free_text)), ":", field('graph', $.decision_graph), "}" 
       ),  
 
       call_node: $ => seq(
-        "[", optional($.node_id), "call", ":", optional(seq($.decision_graph_name, ">")), $.node_id_value, "]"
+        "[", field('id', optional($.node_id)), "call", ":", optional(seq(field('graph', $.decision_graph_name), ">")), $.node_id_value, "]"
       ),
 
       consider_node: $ => seq(
-        "[", optional($.node_id), "consider", ":", $.slot_sub_node, $.consider_options_sub_node, optional($.else_sub_node), "]"
+        "[", field('id', optional($.node_id)), "consider", ":", $.slot_sub_node, $.consider_options_sub_node, optional($.else_sub_node), "]"
       ),
 
       slot_sub_node: $ => seq(
@@ -94,7 +94,7 @@ module.exports = grammar({
       ),
 
       when_node: $ => seq(
-        "[", optional($.node_id), "when", ":", repeat1($.when_answer_sub_node), optional($.else_sub_node), "]" //TODO: it seems though that the java lib only allowys 1 when sub node
+        "[", field('id', optional($.node_id)), "when", ":", repeat1($.when_answer_sub_node), optional($.else_sub_node), "]" //TODO: it seems though that the java lib only allowys 1 when sub node
       ),
 
       when_answer_sub_node: $ => seq(
@@ -102,15 +102,15 @@ module.exports = grammar({
       ),
 
       section_node: $ => seq(
-        "[", optional($.node_id), "section", ":", optional($.info_sub_node), $.decision_graph, "]"
+        "[", field('id', optional($.node_id)), "section", ":", optional($.info_sub_node), $.decision_graph, "]"
       ),
 
       info_sub_node: $ => seq(
-        "{", optional($.node_id), "title", ":", optional($.free_text), "}" 
+        "{", field('id', optional($.node_id)), "title", ":", optional($.free_text), "}" 
       ),
 
       continue_node: $ => seq(
-        "[", optional($.node_id), "continue", "]"
+        "[", field('id', optional($.node_id)), "continue", "]"
       ),
 
       part_node: $ => seq(
@@ -118,15 +118,15 @@ module.exports = grammar({
       ),
 
       end_node: $ => seq(
-        "[",optional($.node_id), "end", "]"
+        "[",field('id', optional($.node_id)), "end", "]"
       ),
 
       reject_node: $ => seq(
-        "[", optional($.node_id), "reject", ":", optional($.free_text), "]" 
+        "[", field('id', optional($.node_id)), "reject", ":", optional($.free_text), "]" 
       ),
 
       set_node: $ => seq(
-        "[", optional($.node_id), "set", ":", $.assignment_slot, "]" 
+        "[", field('id', optional($.node_id)), "set", ":", $.assignment_slot, "]" 
       ),
 
       assignment_slot: $ => seq(
