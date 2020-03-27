@@ -5,7 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "tree-sitter": "^0.16.0",
-    "tree-sitter-decisiongraph": "^0.0.6"
+    "tree-sitter-cli": "^0.16.5",
+    "tree-sitter-decisiongraph": "^0.0.6",
+    "web-tree-sitter": "^0.16.2"
   },
   "devDependencies": {
     "typescript": "^3.8.3"

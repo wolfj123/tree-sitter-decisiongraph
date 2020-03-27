@@ -7,6 +7,7 @@ parser.setLanguage(DecisionGraph);
 //Then you can parse some source code,
 
 const sourceCode = '[ask:{text: txt }{answers: {yes: [todo : ] } }]';
+console.log(sourceCode);
 const tree = parser.parse(sourceCode);
 //and inspect the syntax tree.
 
@@ -26,6 +27,8 @@ console.log(cursor.currentNode);
 cursor.gotoFirstChild();
 console.log(cursor.nodeType);
 console.log(cursor.currentNode);
-console.log(cursor.currentNode.answers);
-
+cursor.gotoFirstChild();
+console.log(cursor.currentNode);
+cursor.gotoNextSibling();
+console.log(cursor.currentNode);
 
