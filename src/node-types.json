@@ -8,7 +8,7 @@
       "required": true,
       "types": [
         {
-          "type": "slot",
+          "type": "slot_reference",
           "named": true
         },
         {
@@ -111,7 +111,7 @@
       "required": true,
       "types": [
         {
-          "type": "slot",
+          "type": "slot_reference",
           "named": true
         },
         {
@@ -453,7 +453,7 @@
     }
   },
   {
-    "type": "slot",
+    "type": "slot_reference",
     "named": true,
     "fields": {}
   },
@@ -466,7 +466,7 @@
       "required": true,
       "types": [
         {
-          "type": "slot",
+          "type": "slot_reference",
           "named": true
         }
       ]

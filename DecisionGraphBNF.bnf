@@ -44,7 +44,7 @@ DECISION GRAPH BNF
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/consider-when-node.html
 <consider_node>					::= "[" [<node_id>] "consider" ":" <slot_sub_node> <consider_options_sub_node> [<else_sub_node>] "]"
 
-<slot_sub_node>					::= "{" "slot" ":" <slot> "}"
+<slot_sub_node>					::= "{" "slot" ":" <slot_reference> "}"
 
 <consider_options_sub_node>		::= "{" "options" ":" <consider_option_sub_node>+  "}"
 
@@ -77,15 +77,15 @@ DECISION GRAPH BNF
 
 <assignment_slot>				::= (<assignment_slot> ";" <assignment_slot>) | <atomic_assignment_slot> | <aggregate_assignment_slot>
 
-<atomic_assignment_slot>		::= <slot> "=" <slot_value>
+<atomic_assignment_slot>		::= <slot_reference> "=" <slot_value>
 
-<aggregate_assignment_slot>		::=  <slot> "+=" <slot_values> 
+<aggregate_assignment_slot>		::=  <slot_reference> "+=" <slot_values> 
 
 <slot_values>					::= "{" <slot_value> ("," <slot_value>)* "}" | <slot_value> ("," <slot_value>)*
 
 <slot_value>					::= <slot_identifier>
 
-<slot> 							::= <slot_identifier> ("/"<slot_identifier>)*
+<slot_reference> 				::= <slot_identifier> ("/"<slot_identifier>)*
 
 <slot_identifier> 				::= <letter> (<letter> | <digit>)* 
 

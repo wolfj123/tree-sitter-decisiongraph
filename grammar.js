@@ -78,7 +78,7 @@ module.exports = grammar({
       ),
 
       slot_sub_node: $ => seq(
-        "{", "slot", ":", $.slot, "}"
+        "{", "slot", ":", $.slot_reference, "}"
       ),
 
       consider_options_sub_node: $ => seq(
@@ -138,14 +138,14 @@ module.exports = grammar({
       ),
 
       aggregate_assignment_slot: $ => seq(
-        $.slot, "+=", $._slot_values
+        $.slot_reference, "+=", $._slot_values
       ),
 
       atomic_assignment_slot: $ => seq(
-        $.slot, "=", $.slot_value
+        $.slot_reference, "=", $.slot_value
       ),
       
-      slot: $ => seq(
+      slot_reference: $ => seq(
         $._slot_identifier, repeat(seq("/", $._slot_identifier))
       ),
 
