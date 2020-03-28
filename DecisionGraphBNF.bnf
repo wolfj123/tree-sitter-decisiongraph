@@ -1,7 +1,5 @@
 DECISION GRAPH BNF
 
-# TODO
-# import node path formats are unclear right now
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/index.html
 <decision_graph> 				::= <top_level_node>*
