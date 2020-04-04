@@ -47,5 +47,9 @@ async function demo() {
     let cursor = tree.rootNode.walk();
     //console.log(cursor);
     //console.log(cursor.nodeType);
-    console.log(cursor.currentNode().descendantsOfType('node_id'))
+    //console.log(cursor.currentNode().descendantsOfType('node_id'))
+
+    tree = parser.parse('[todo: wot]');
+    let cursor = tree.rootNode.walk();
+    console.log(cursor.currentNode().descendantsOfType('todo_node'))
 }

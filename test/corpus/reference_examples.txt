@@ -17,7 +17,7 @@ ask node
     {no: [call: nonHuman] }}]
 
 ---
-(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))) (call_node (node_id_value)))) (answer_sub_node (free_text) (decision_graph (call_node (node_id_value)))))) (ask_node (text_sub_node (free_text)) (terms_sub_node (term_sub_node (free_text) (free_text)) (term_sub_node (free_text) (free_text))) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value))))  (call_node (node_id_value)))) (answer_sub_node (free_text) (decision_graph (call_node (node_id_value))))))))
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))) (call_node (node_reference (node_id_value))))) (answer_sub_node (free_text) (decision_graph (call_node (node_reference (node_id_value))))))) (ask_node (text_sub_node (free_text)) (terms_sub_node (term_sub_node (free_text) (free_text)) (term_sub_node (free_text) (free_text))) (answers_sub_node (answer_sub_node (free_text) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value))))  (call_node (node_reference (node_id_value))))) (answer_sub_node (free_text) (decision_graph (call_node (node_reference (node_id_value)))))))))
 						
 
 ==================
@@ -30,7 +30,7 @@ ask yes no node
     {yes: [call: healthSection]}}]
 
 ---
-(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_id_value))))))))
+(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_reference (node_id_value)))))))))
 
 ==================
 call node
@@ -51,8 +51,7 @@ call node
 
 ---
 
-(source_file (decision_graph (call_node (node_id (node_id_value)) (node_id_value)) (part_node (node_id (node_id_value)) (decision_graph (set_node (node_id (node_id_value)) (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))) (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node))))) (set_node (node_id (node_id_value)) (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value))))))))
-
+(source_file (decision_graph (call_node (node_id (node_id_value)) (node_reference (node_id_value))) (part_node (node_id (node_id_value)) (decision_graph (set_node (node_id (node_id_value)) (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))) (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node))))) (set_node (node_id (node_id_value)) (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value))))))))
 ==================
 consider node
 ==================
@@ -71,7 +70,7 @@ consider node
 ]
 ---
 
-(source_file (comment) (decision_graph (consider_node (node_id (node_id_value)) (slot_sub_node (slot_reference)) (consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (call_node (node_id_value))))) (else_sub_node (comment) (decision_graph (call_node (node_id_value)))))))
+(source_file (comment) (decision_graph (consider_node (node_id (node_id_value)) (slot_sub_node (slot_reference)) (consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))))) (consider_option_sub_node (slot_value) (decision_graph (call_node (node_reference (node_id_value)))))) (else_sub_node (comment) (decision_graph (call_node (node_reference (node_id_value))))))))
 
 ==================
 when node
@@ -86,7 +85,7 @@ when node
 
 ---
 
-(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (decision_graph (call_node (node_id_value)))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value)))) (decision_graph (call_node (node_id_value)))) (else_sub_node (decision_graph (call_node (node_id_value)))))))
+(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (decision_graph (call_node (node_reference (node_id_value))))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value)))) (decision_graph (call_node (node_reference (node_id_value))))) (else_sub_node (decision_graph (call_node (node_reference (node_id_value))))))))
 
 ==================
 end node
@@ -97,7 +96,8 @@ end node
 
 ---
 
- (source_file (decision_graph (call_node (node_id (node_id_value)) (node_id_value)) (end_node (node_id (node_id_value)))))
+(source_file (decision_graph (call_node (node_id (node_id_value)) (node_reference (node_id_value))) (end_node (node_id (node_id_value)))))
+
 
 ==================
 reject node
@@ -189,7 +189,7 @@ todo2
 
 ---
 
-(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_id_value)))))) (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_id_value)))))) (todo_node (free_text)) (end_node) (todo_node (node_id (node_id_value)) (free_text)) (end_node) (todo_node (node_id (node_id_value)) (free_text)) (end_node)))
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_reference (node_id_value))))))) (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_reference (node_id_value))))))) (todo_node (free_text)) (end_node) (todo_node (node_id (node_id_value)) (free_text)) (end_node) (todo_node (node_id (node_id_value)) (free_text)) (end_node)))
 
 ==================
 import
@@ -201,7 +201,7 @@ import
 
 ---
 
-(source_file (decision_graph (import_node (decision_graph_name) (file_path)) (call_node (decision_graph_name) (node_id_value)) (call_node (decision_graph_name) (node_id_value))))
+(source_file (decision_graph (import_node (decision_graph_name) (file_path)) (call_node (node_reference (decision_graph_name) (node_id_value))) (call_node (node_reference (decision_graph_name) (node_id_value)))))
 
 ==================
 import dogs and cats
@@ -228,5 +228,4 @@ import dogs and cats
 
 ---
 
-(source_file (decision_graph (import_node (decision_graph_name) (file_path)) (import_node (decision_graph_name) (file_path)) (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (decision_graph_name) (node_id_value)) (call_node (decision_graph_name) (node_id_value)))) (answer_sub_node (free_text) (decision_graph (call_node (decision_graph_name) (node_id_value)) (call_node (decision_graph_name) (node_id_value)))))) (todo_node (free_text)) (section_node (node_id (node_id_value)) (info_sub_node (free_text)) (decision_graph (todo_node (free_text)) (todo_node (free_text)))) (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))) (end_node)))
-
+(source_file (decision_graph (import_node (decision_graph_name) (file_path)) (import_node (decision_graph_name) (file_path)) (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (call_node (node_reference (decision_graph_name) (node_id_value))) (call_node (node_reference (decision_graph_name) (node_id_value))))) (answer_sub_node (free_text) (decision_graph (call_node (node_reference (decision_graph_name) (node_id_value))) (call_node (node_reference (decision_graph_name) (node_id_value))))))) (todo_node (free_text)) (section_node (node_id (node_id_value)) (info_sub_node (free_text)) (decision_graph (todo_node (free_text)) (todo_node (free_text)))) (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))) (end_node)))

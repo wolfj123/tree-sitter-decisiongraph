@@ -93,10 +93,7 @@ sanity when node
 
 ---
 
-(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (decision_graph (call_node
- (node_id_value)))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value)))) (decision_graph (call_node (node_id_value)))) (else_sub_node (decision_graph (call_node (node_id_value)))))))
-
-
+(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (decision_graph (call_node (node_reference (node_id_value))))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value)))) (decision_graph (call_node (node_reference (node_id_value))))) (else_sub_node (decision_graph (call_node (node_reference (node_id_value))))))))
 ==================
 sanity set node
 ==================

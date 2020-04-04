@@ -382,6 +382,19 @@
           "value": ":"
         },
         {
+          "type": "SYMBOL",
+          "name": "node_reference"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "node_reference": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -405,10 +418,6 @@
         {
           "type": "SYMBOL",
           "name": "node_id_value"
-        },
-        {
-          "type": "STRING",
-          "value": "]"
         }
       ]
     },

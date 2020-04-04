@@ -130,15 +130,11 @@
       "required": true,
       "types": [
         {
-          "type": "decision_graph_name",
-          "named": true
-        },
-        {
           "type": "node_id",
           "named": true
         },
         {
-          "type": "node_id_value",
+          "type": "node_reference",
           "named": true
         }
       ]
@@ -371,6 +367,25 @@
     "type": "node_id_value",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "node_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "decision_graph_name",
+          "named": true
+        },
+        {
+          "type": "node_id_value",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "part_node",
