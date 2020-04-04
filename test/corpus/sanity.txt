@@ -77,7 +77,7 @@ sanity consider
 ]
 ---
 
-(source_file (decision_graph (consider_node (node_id (node_id_value)) (slot_sub_node (slot_reference)) (consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph (todo_node)))))))
+(source_file (decision_graph (consider_node (node_id (node_id_value)) (slot_sub_node (slot_reference (slot_identifier))) (consider_options_sub_node (consider_option_sub_node (slot_value) (decision_graph (todo_node)))))))
 
 
 ==================
@@ -93,7 +93,9 @@ sanity when node
 
 ---
 
-(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (decision_graph (call_node (node_reference (node_id_value))))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value)))) (decision_graph (call_node (node_reference (node_id_value))))) (else_sub_node (decision_graph (call_node (node_reference (node_id_value))))))))
+(source_file (decision_graph (when_node (when_answer_sub_node (assignment_slot (aggregate_assignment_slot (slot_reference (slot_identifier)) (slot_value))) (decision_graph (call_node (node_reference (node_id_value))))) (when_answer_sub_node (assignment_slot (assignment_slot (aggregate_assignment_slot (slot_reference (slot_identifier)) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot_reference (slot_identifier)) (slot_value)))) (decision_graph (call_node (node_reference (node_id_value))))) (else_sub_node (decision_graph (call_node (node_reference (node_id_value))))))))
+
+
 ==================
 sanity set node
 ==================
@@ -101,7 +103,7 @@ sanity set node
 [set: DataTags/Mid1/Bottom1=b1a]
 ---
 
-(source_file (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value)))))) 
+(source_file (decision_graph (set_node (assignment_slot (atomic_assignment_slot (slot_reference (slot_identifier) (slot_identifier) (slot_identifier)) (slot_value)))))) 
 
                         
 ==================
@@ -111,7 +113,7 @@ sanity set node 2
 [set: name += val]
 ---
 
-(source_file (decision_graph (set_node (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value))))))  
+(source_file (decision_graph (set_node (assignment_slot (aggregate_assignment_slot (slot_reference (slot_identifier)) (slot_value))))))  
 
 
 ==================
@@ -122,7 +124,7 @@ sanity set node 3
 
 ---
 
-(source_file (decision_graph (set_node (assignment_slot (assignment_slot (atomic_assignment_slot (slot_reference) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot_reference) (slot_value) (slot_value)))))))
+(source_file (decision_graph (set_node (assignment_slot (assignment_slot (atomic_assignment_slot (slot_reference (slot_identifier) (slot_identifier) (slot_identifier)) (slot_value))) (assignment_slot (aggregate_assignment_slot (slot_reference (slot_identifier) (slot_identifier) (slot_identifier)) (slot_value) (slot_value)))))))
 
 
 ==================

@@ -468,9 +468,24 @@
     }
   },
   {
-    "type": "slot_reference",
+    "type": "slot_identifier",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "slot_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "slot_identifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "slot_sub_node",

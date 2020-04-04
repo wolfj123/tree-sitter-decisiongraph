@@ -150,7 +150,7 @@ module.exports = grammar({
       ),
       
       slot_reference: $ => seq(
-        $._slot_identifier, repeat(seq("/", $._slot_identifier))
+        $.slot_identifier, repeat(seq("/", $.slot_identifier))
       ),
 
       _slot_values: $ => choice(
@@ -176,7 +176,7 @@ module.exports = grammar({
         return token(seq(alpha, repeat(alpha_numeric)))
       },
 
-      _slot_identifier: $ => {
+      slot_identifier: $ => {
         return token(seq(alpha, repeat(alpha_numeric)))
       },
 

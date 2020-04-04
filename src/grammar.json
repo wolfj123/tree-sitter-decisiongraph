@@ -995,7 +995,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_slot_identifier"
+          "name": "slot_identifier"
         },
         {
           "type": "REPEAT",
@@ -1008,7 +1008,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_slot_identifier"
+                "name": "slot_identifier"
               }
             ]
           }
@@ -1097,7 +1097,7 @@
         ]
       }
     },
-    "_slot_identifier": {
+    "slot_identifier": {
       "type": "TOKEN",
       "content": {
         "type": "SEQ",
