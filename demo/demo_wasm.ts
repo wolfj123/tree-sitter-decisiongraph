@@ -19,7 +19,7 @@ async function demo() {
     const tree = parser.parse(sourceCode);
     //and inspect the syntax tree.
 
-    console.log(tree.rootNode.toString());
+    //console.log(tree.rootNode.toString());
 
     // //Traverse
     // //https://tree-sitter.github.io/tree-sitter/using-parsers#walking-trees-with-tree-cursors
@@ -43,13 +43,21 @@ async function demo() {
     // console.log(cursor.currentNode().text);
 
 
-    tree = parser.parse('[>nn< todo: wot]');
-    let cursor = tree.rootNode.walk();
-    //console.log(cursor);
-    //console.log(cursor.nodeType);
-    //console.log(cursor.currentNode().descendantsOfType('node_id'))
+    // tree = parser.parse('[>nn< todo: wot]');
+    // let cursor = tree.rootNode.walk();
+    // //console.log(cursor);
+    // //console.log(cursor.nodeType);
+    // //console.log(cursor.currentNode().descendantsOfType('node_id'))
 
-    tree = parser.parse('[todo: wot]');
+    // tree = parser.parse('[todo: wot]');
+    // let cursor = tree.rootNode.walk();
+    // console.log(cursor.currentNode().descendantsOfType('todo_node'))
+
+
+
+
+    tree = parser.parse('[ask:{text: txt }{  : {yes: [todo : ] } }]');
     let cursor = tree.rootNode.walk();
-    console.log(cursor.currentNode().descendantsOfType('todo_node'))
+    console.log(tree.rootNode.toString());
+    console.log(cursor.currentNode().namedDescendantForPosition({row: 0, column: 19}).type)
 }

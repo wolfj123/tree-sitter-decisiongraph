@@ -44,6 +44,7 @@ module.exports = grammar({
       ),  
 
       free_text: $ => /([a-zA-Z0-9._,/~?!()@#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s[a-zA-Z0-9._,/~?!()@#$%^&*_+-])+/,
+      //free_text: $ => /[a-zA-Z0-9._,/~?!()@#$%^&*_+-]|\s+/,
 
       ask_node: $ => seq(
           "[", optional($.node_id), "ask", ":", $.text_sub_node, optional($.terms_sub_node), $.answers_sub_node, "]"
