@@ -6,7 +6,7 @@ answers with free text of 4 words
   {text: txt}
   {answers:
     {y:[todo:]}
-    {1 2 3 4 : [todo:]}}]
+    {1 2 3 4: [todo:]}}]
 
 ---
 (source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (todo_node))) 
