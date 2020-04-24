@@ -11,3 +11,20 @@ answers with free text of 4 words
 ---
 (source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (todo_node))) 
 (answer_sub_node (free_text) (decision_graph (todo_node)))))))
+
+
+==================
+empty answer should be allowed
+==================
+
+
+[>harm< ask:
+  {text: How harmful are the data?}
+  {answers:
+    {harmless: <*No need to do anything, this is set at line 1.*>}
+  }
+]
+
+---
+(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (comme
+nt))))))

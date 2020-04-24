@@ -345,8 +345,16 @@
           "value": ":"
         },
         {
-          "type": "SYMBOL",
-          "name": "decision_graph"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "decision_graph"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",

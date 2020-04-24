@@ -34,7 +34,7 @@ DECISION GRAPH BNF
 
 <answers_sub_node>				::= "{" "answers" ":" <answer_sub_node>+  "}"
 
-<answer_sub_node>				::= "{" <mulit_line_free_text> ":" <decision_graph> "}"
+<answer_sub_node>				::= "{" <mulit_line_free_text> ":" [<decision_graph>] "}"
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/call-node.html
 <call_node>						::= "[" [<node_id>] "call" ":" <node_reference> "]"

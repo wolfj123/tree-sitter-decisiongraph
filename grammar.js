@@ -68,7 +68,7 @@ module.exports = grammar({
       ),
 
       answer_sub_node: $ => seq(
-        "{", optional($.free_text), ":", $.decision_graph, "}" 
+        "{", optional($.free_text), ":", optional($.decision_graph), "}" 
       ),  
 
       call_node: $ => seq(
