@@ -1,0 +1,43 @@
+==================
+completion1
+==================
+
+[
+
+
+---
+(ERROR)
+
+==================
+completion2
+==================
+
+[ask:
+    {text: txt }
+    
+]
+
+---
+(ERROR (text_sub_node (free_text)))
+
+==================
+completion3
+==================
+
+[ask:
+
+    {answers: {yes: [todo : ] } }
+]
+
+---
+(ERROR (ERROR))
+
+==================
+completion4
+==================
+
+[set: ]
+
+
+---
+(ERROR)
