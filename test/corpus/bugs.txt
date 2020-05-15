@@ -27,3 +27,18 @@ empty answer should be allowed
 
 ---
 (source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (comment))))))
+
+
+==================
+single qoute breaking free text
+==================
+
+
+[section:
+	{title: it's a bug }]
+
+---
+(source_file)
+
+
+
