@@ -34,11 +34,10 @@ single qoute breaking free text
 ==================
 
 
-[section:
-	{title: it's a bug }]
+[todo: it's a bug]
 
 ---
-(source_file)
+(source_file (decision_graph (todo_node (free_text))))
 
 
 

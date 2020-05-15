@@ -98,7 +98,7 @@ DECISION GRAPH BNF
 
 <mulit_line_free_text>			::= (<free_text> | <new_line>)*
 
-<free_text>						::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-")+ 
+<free_text>						::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-'")+ 
 
 <node_id> 						::= ">" <node_id_value>	"<"
 
