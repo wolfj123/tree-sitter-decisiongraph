@@ -27,6 +27,23 @@ answers with free text with several spaces
 (source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (decision_graph (todo_node))) 
 (answer_sub_node (free_text_no_colon) (decision_graph (todo_node)))))))
 
+
+==================
+ask node
+==================
+
+[ask:
+	{text: dasasd}
+  {terms:
+    { yo [yo]: sometext}}
+  {answers:
+    {no: [todo: tmp] }}]
+
+---
+
+ (source_file (decision_graph (ask_node (text_sub_node (free_text)) (terms_sub_node (term_sub_node (free_text_no_colon) (free_text))) (answers_sub_node (answer_sub_
+node (free_text_no_colon) (decision_graph (todo_node (free_text))))))))
+
 ==================
 ask big text from ref
 ==================
