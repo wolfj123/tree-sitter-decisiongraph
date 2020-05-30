@@ -3,7 +3,6 @@ const alpha = /[^:\s0-9;.,`"'|<=>/\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-
 const alpha_numeric = /[^+:\s;.,`"'|<=>/\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
 const string_regex = /[^;`|<=>\\\[\]{}\uFEFF\u2060\u200B\u00A0]|\\u[0-9a-fA-F]{4}|\\u\{[0-9a-fA-F]+\}/
 
-
 const PREC = {
   COMMENT: 1, // Prefer comments over regexes
   STRING: 2,  // In a string, prefer string characters over comments
@@ -48,8 +47,14 @@ module.exports = grammar({
         "[", optional($.node_id), "todo", ":", optional($.free_text), "]" 
       ),  
 
+      //free_text: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:\[\]]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:\[\]]\s*))+/,
+      //free_text_no_end_brackets: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:\[]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:\[]\s*))+/,
+      //free_text_no_colon: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-\[\]]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-\[\]]\s*))+/,
+      
+
       free_text: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:]\s*))+/,
       free_text_no_colon: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s*))+/,
+
 
       ask_node: $ => seq(
           "[", optional($.node_id), "ask", ":", $.text_sub_node, optional($.terms_sub_node), $.answers_sub_node, "]"
