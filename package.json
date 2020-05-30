@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-decisiongraph",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "tree-sitter parser for the Decision-Graph language of PolicyModels",
   "repository": {
     "type": "git",
