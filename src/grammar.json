@@ -97,7 +97,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "free_text"
+              "name": "free_text_no_end_bracket"
             },
             {
               "type": "BLANK"
@@ -112,11 +112,15 @@
     },
     "free_text": {
       "type": "PATTERN",
-      "value": "(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:]\\s*))+"
+      "value": "(['’;\\[\\]a-zA-Z0-9._,/~?!()@#$%^&*_+-:]|(['’;\\[\\]a-zA-Z0-9._,/~?!()@#$%^&*_+-:]\\s*))+"
+    },
+    "free_text_no_end_bracket": {
+      "type": "PATTERN",
+      "value": "(['’;\\[a-zA-Z0-9._,/~?!()@#$%^&*_+-:]|(['’;\\[a-zA-Z0-9._,/~?!()@#$%^&*_+-:]\\s*))+"
     },
     "free_text_no_colon": {
       "type": "PATTERN",
-      "value": "(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-]\\s*))+"
+      "value": "(['’;\\[\\]a-zA-Z0-9._,/~?!()@#$%^&*_+-]|(['’;\\[\\]a-zA-Z0-9._,/~?!()@#$%^&*_+-]\\s*))+"
     },
     "ask_node": {
       "type": "SEQ",
@@ -747,7 +751,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "free_text"
+              "name": "free_text_no_end_bracket"
             },
             {
               "type": "BLANK"
@@ -871,7 +875,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "free_text"
+              "name": "free_text_no_end_bracket"
             },
             {
               "type": "BLANK"

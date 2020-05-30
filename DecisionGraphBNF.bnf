@@ -96,9 +96,11 @@ DECISION GRAPH BNF
 
 <file_path>						::= a legal file path
 
-<free_text>						::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-:’;'" [<new_line>]*)+ 
+<free_text>						::=  (<letter> | <digit> | "\[\].,/~?!()@:#$%^&*_+-:’;'" [<new_line>]*)+ 
 
-<free_text_nocolon>				::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-’;'" [<new_line>]*)+  
+<free_text_no_end_bracket> 		::= (<letter> | <digit> | "\[.,/~?!()@:#$%^&*_+-:’;'" [<new_line>]*)+ 
+
+<free_text_nocolon>				::=  (<letter> | <digit> | "\[\].,/~?!()@:#$%^&*_+-’;'" [<new_line>]*)+  
 
 <node_id> 						::= ">" <node_id_value>	"<"
 

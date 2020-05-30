@@ -41,8 +41,8 @@ ask node
 
 ---
 
- (source_file (decision_graph (ask_node (text_sub_node (free_text)) (terms_sub_node (term_sub_node (free_text_no_colon) (free_text))) (answers_sub_node (answer_sub_
-node (free_text_no_colon) (decision_graph (todo_node (free_text))))))))
+ (source_file (decision_graph (ask_node (text_sub_node (free_text)) (terms_sub_node (term_sub_node (free_text_no_colon) (free_text))) (answers_sub_node 
+ (answer_sub_node (free_text_no_colon) (decision_graph (todo_node (free_text_no_end_bracket))))))))
 
 ==================
 ask big text from ref
@@ -56,7 +56,7 @@ ask big text from ref
 		{yes:[todo:idk]}}]
 
 ---
-(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (decision_graph (todo_node (free_text))))))))
+(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (decision_graph (todo_node (free_text_no_end_bracket))))))))
 
 ==================
 empty answer should be allowed
@@ -82,7 +82,7 @@ single qoute breaking free text
 [todo: it's a bug]
 
 ---
-(source_file (decision_graph (todo_node (free_text))))
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))
 
 ==================
 free text unable to handle colon
@@ -90,7 +90,7 @@ free text unable to handle colon
 
 [ todo: this is a free:text]
 ---
-(source_file (decision_graph (todo_node (free_text))))
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))
 
 
 ==================
@@ -119,7 +119,7 @@ single curly qoute breaking free text
 [todo: it’s a bug]
 
 ---
-(source_file (decision_graph (todo_node (free_text))))
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))
 
 ==================
 single whatever this is breaking free text
@@ -129,4 +129,4 @@ single whatever this is breaking free text
 [todo: it;s a bug]
 
 ---
-(source_file (decision_graph (todo_node (free_text))))
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))

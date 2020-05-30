@@ -44,16 +44,12 @@ module.exports = grammar({
           ),
 
       todo_node: $ => seq(
-        "[", optional($.node_id), "todo", ":", optional($.free_text), "]" 
+        "[", optional($.node_id), "todo", ":", optional($.free_text_no_end_bracket), "]" 
       ),  
 
-      //free_text: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:\[]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:\[]\s*))+/,
-      //free_text_no_end_brackets: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:\[]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:\[]\s*))+/,
-      //free_text_no_colon: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-\[]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-\[]\s*))+/,
-      
-        //OG
-      free_text: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-:]\s*))+/,
-      free_text_no_colon: $ => /(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-]|(['’;a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s*))+/,
+      free_text: $ => /(['’;\[\]a-zA-Z0-9._,/~?!()@#$%^&*_+-:]|(['’;\[\]a-zA-Z0-9._,/~?!()@#$%^&*_+-:]\s*))+/,
+      free_text_no_end_bracket: $ => /(['’;\[a-zA-Z0-9._,/~?!()@#$%^&*_+-:]|(['’;\[a-zA-Z0-9._,/~?!()@#$%^&*_+-:]\s*))+/,
+      free_text_no_colon: $ => /(['’;\[\]a-zA-Z0-9._,/~?!()@#$%^&*_+-]|(['’;\[\]a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s*))+/,
 
 
       ask_node: $ => seq(
@@ -121,7 +117,7 @@ module.exports = grammar({
       ),
 
       info_sub_node: $ => seq(
-        "{", optional($.node_id), "title", ":", optional($.free_text), "}" 
+        "{", optional($.node_id), "title", ":", optional($.free_text_no_end_bracket), "}" 
       ),
 
       continue_node: $ => seq(
@@ -137,7 +133,7 @@ module.exports = grammar({
       ),
 
       reject_node: $ => seq(
-        "[", optional($.node_id), "reject", ":", optional($.free_text), "]" 
+        "[", optional($.node_id), "reject", ":", optional($.free_text_no_end_bracket), "]" 
       ),
 
       set_node: $ => seq(

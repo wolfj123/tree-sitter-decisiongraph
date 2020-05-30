@@ -15,7 +15,7 @@ sanity todo 2
 
 ---
 
-(source_file (decision_graph (todo_node (free_text))))
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))
 
 
 ==================
@@ -135,7 +135,7 @@ sanity reject node
 
 ---
 
-(source_file (decision_graph (reject_node (free_text))))
+(source_file (decision_graph (reject_node (free_text_no_end_bracket))))
 
 
 ==================
