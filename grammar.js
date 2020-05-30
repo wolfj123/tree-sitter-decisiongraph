@@ -96,7 +96,7 @@ module.exports = grammar({
       ),
       
       consider_option_sub_node: $ => seq(
-        "{", $.slot_value, ":", $.decision_graph, "}" 
+        "{", $._slot_values, ":", $.decision_graph, "}" 
       ),
       
       else_sub_node: $ => seq(

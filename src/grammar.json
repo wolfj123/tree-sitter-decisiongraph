@@ -548,7 +548,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "slot_value"
+          "name": "_slot_values"
         },
         {
           "type": "STRING",

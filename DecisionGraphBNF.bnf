@@ -48,7 +48,7 @@ DECISION GRAPH BNF
 
 <consider_options_sub_node>		::= "{" "options" ":" <consider_option_sub_node>+  "}"
 
-<consider_option_sub_node>		::= "{" <slot_value> ":" <decision_graph> "}"
+<consider_option_sub_node>		::= "{" <slot_values> ":" <decision_graph> "}"
 
 <else_sub_node>					::= "{" "else" ":" <decision_graph> "}"
 
@@ -96,9 +96,9 @@ DECISION GRAPH BNF
 
 <file_path>						::= a legal file path
 
-<free_text>						::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-:'" [<new_line>]*)+ 
+<free_text>						::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-:’;'" [<new_line>]*)+ 
 
-<free_text_nocolon>				::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-'" [<new_line>]*)+  
+<free_text_nocolon>				::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-’;'" [<new_line>]*)+  
 
 <node_id> 						::= ">" <node_id_value>	"<"
 

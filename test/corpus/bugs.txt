@@ -77,7 +77,8 @@ consider aggregate option
 
 ---
 
-(source_file)
+(source_file (decision_graph (consider_node (slot_sub_node (slot_reference (slot_identifier))) (consider_options_sub_node (consider_option_sub_node (slot_value) 
+(slot_value) (decision_graph (set_node (assignment_slot (aggregate_assignment_slot (slot_reference (slot_identifier)) (slot_value))))))))))
 
 
 ==================
