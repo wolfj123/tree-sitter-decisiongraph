@@ -17,6 +17,11 @@ module.exports = grammar({
       $.comment,
       /[\s\uFEFF\u2060\u200B\u00A0]/
     ],
+
+    externals: $ => [
+      $._comment_block,
+      //$.free_text,
+    ],
   
     rules: {
       source_file: $ => $.decision_graph,
@@ -43,10 +48,8 @@ module.exports = grammar({
         "[", optional($.node_id), "todo", ":", optional($.free_text), "]" 
       ),  
 
-      //free_text: $ => /([a-zA-Z0-9._,/~?!()@#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s[a-zA-Z0-9._,/~?!()@#$%^&*_+-])+/,
-      //free_text: $ => /[a-zA-Z0-9._,/~?!()@#$%^&*_+-]|\s+/,
-      free_text: $ => /(['a-zA-Z0-9._,/~?!()@#$%^&*_+-]|(['a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s))+/,
-      
+      free_text: $ => /(['a-zA-Z0-9._,/~?!()@#$%^&*_+-:]|(['a-zA-Z0-9._,/~?!()@#$%^&*_+-:]\s))+/,
+      free_text_no_colon: $ => /(['a-zA-Z0-9._,/~?!()@#$%^&*_+-]|(['a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s))+/,
 
       ask_node: $ => seq(
           "[", optional($.node_id), "ask", ":", $.text_sub_node, optional($.terms_sub_node), $.answers_sub_node, "]"
@@ -61,7 +64,7 @@ module.exports = grammar({
       ),
 
       term_sub_node: $ => seq(
-        "{", optional($.free_text), ":", optional($.free_text), "}" 
+        "{", optional($.free_text_no_colon), ":", optional($.free_text), "}" 
       ),
 
       answers_sub_node: $ => seq(
@@ -69,7 +72,7 @@ module.exports = grammar({
       ),
 
       answer_sub_node: $ => seq(
-        "{", optional($.free_text), ":", optional($.decision_graph), "}" 
+        "{", optional($.free_text_no_colon), ":", optional($.decision_graph), "}" 
       ),  
 
       call_node: $ => seq(
@@ -210,8 +213,6 @@ module.exports = grammar({
       ))
     },
 
-    externals: $ => [
-      $._comment_block
-    ]
+
     
   });

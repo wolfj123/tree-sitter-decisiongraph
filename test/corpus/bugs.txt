@@ -9,8 +9,8 @@ answers with free text of 4 words
     {1 2 3 4: [todo:]}}]
 
 ---
-(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (todo_node))) 
-(answer_sub_node (free_text) (decision_graph (todo_node)))))))
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (decision_graph (todo_node))) 
+(answer_sub_node (free_text_no_colon) (decision_graph (todo_node)))))))
 
 
 ==================
@@ -26,7 +26,7 @@ empty answer should be allowed
 ]
 
 ---
-(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (comment))))))
+(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (comment))))))
 
 
 ==================

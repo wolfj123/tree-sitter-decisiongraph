@@ -26,15 +26,15 @@ DECISION GRAPH BNF
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/ask-node.html
 <ask_node>						::= "[" [<node_id>] "ask" ":" <text_sub_node> [<terms_sub_node>] <answers_sub_node> "]"
 
-<text_sub_node>					::= "{" "text" ":" <mulit_line_free_text> "}"
+<text_sub_node>					::= "{" "text" ":" <free_text> "}"
 
 <terms_sub_node>				::= "{" "term" ":" <term_sub_node>* "}"
 
-<term_sub_node>					::= "{" <mulit_line_free_text> ":" <mulit_line_free_text> "}"
+<term_sub_node>					::= "{" <free_text_nocolon> ":" <free_text> "}"
 
 <answers_sub_node>				::= "{" "answers" ":" <answer_sub_node>+  "}"
 
-<answer_sub_node>				::= "{" <mulit_line_free_text> ":" [<decision_graph>] "}"
+<answer_sub_node>				::= "{" <free_text_nocolon> ":" [<decision_graph>] "}"
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/call-node.html
 <call_node>						::= "[" [<node_id>] "call" ":" <node_reference> "]"
@@ -60,7 +60,7 @@ DECISION GRAPH BNF
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/section-node.html
 <section_node>					::= "[" [<node_id>] "section" ":" [<info_sub_node>] <decision_graph> "]"
 
-<info_sub_node>					::= "{" "title" ":" <mulit_line_free_text> "}"
+<info_sub_node>					::= "{" "title" ":" <free_text> "}"
 
 <continue_node>					::= "[" [<node_id>] "continue" "]"
 
@@ -70,7 +70,7 @@ DECISION GRAPH BNF
 <end_node>						::= "[" [<node_id>] "end" "]"
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/reject-node.html
-<reject_node>					::= "[" [<node_id>] "reject" ":" <mulit_line_free_text> "]"
+<reject_node>					::= "[" [<node_id>] "reject" ":" <free_text> "]"
 
 #https://datatagginglibrary.readthedocs.io/en/latest/decision-graphs/set-node.html
 <set_node> 						::= "[" [<node_id>] "set" ":" <assignment_slot> "]"
@@ -96,9 +96,9 @@ DECISION GRAPH BNF
 
 <file_path>						::= a legal file path
 
-<mulit_line_free_text>			::= (<free_text> | <new_line>)*
+<free_text>						::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-:'" [<new_line>]*)+ 
 
-<free_text>						::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-'")+ 
+<free_text_nocolon>				::=  (<letter> | <digit> | ".,/~?!()@:#$%^&*_+-'" [<new_line>]*)+  
 
 <node_id> 						::= ">" <node_id_value>	"<"
 

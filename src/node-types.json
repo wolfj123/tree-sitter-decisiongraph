@@ -31,7 +31,7 @@
           "named": true
         },
         {
-          "type": "free_text",
+          "type": "free_text_no_colon",
           "named": true
         }
       ]
@@ -533,6 +533,10 @@
         {
           "type": "free_text",
           "named": true
+        },
+        {
+          "type": "free_text_no_colon",
+          "named": true
         }
       ]
     }
@@ -726,6 +730,10 @@
   },
   {
     "type": "free_text",
+    "named": true
+  },
+  {
+    "type": "free_text_no_colon",
     "named": true
   },
   {

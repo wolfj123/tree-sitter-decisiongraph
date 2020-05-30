@@ -112,6 +112,10 @@
     },
     "free_text": {
       "type": "PATTERN",
+      "value": "(['a-zA-Z0-9._,/~?!()@#$%^&*_+-:]|(['a-zA-Z0-9._,/~?!()@#$%^&*_+-:]\\s))+"
+    },
+    "free_text_no_colon": {
+      "type": "PATTERN",
       "value": "(['a-zA-Z0-9._,/~?!()@#$%^&*_+-]|(['a-zA-Z0-9._,/~?!()@#$%^&*_+-]\\s))+"
     },
     "ask_node": {
@@ -264,7 +268,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "free_text"
+              "name": "free_text_no_colon"
             },
             {
               "type": "BLANK"
@@ -333,7 +337,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "free_text"
+              "name": "free_text_no_colon"
             },
             {
               "type": "BLANK"
