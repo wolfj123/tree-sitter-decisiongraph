@@ -39,5 +39,10 @@ single qoute breaking free text
 ---
 (source_file (decision_graph (todo_node (free_text))))
 
+==================
+free text unable to handle colon
+==================
 
-
+[ todo: this is a free:text]
+---
+(source_file (decision_graph (todo_node (free_text))))
