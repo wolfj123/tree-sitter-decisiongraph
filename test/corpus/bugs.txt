@@ -14,6 +14,21 @@ answers with free text of 4 words
 
 
 ==================
+answers with free text with several spaces
+==================
+
+[ask:
+  {text: txt     txt}
+  {answers:
+    {y:[todo:]}
+    {1 2 3 4: [todo:]}}]
+
+---
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (decision_graph (todo_node))) 
+(answer_sub_node (free_text_no_colon) (decision_graph (todo_node)))))))
+
+
+==================
 empty answer should be allowed
 ==================
 
@@ -44,5 +59,43 @@ free text unable to handle colon
 ==================
 
 [ todo: this is a free:text]
+---
+(source_file (decision_graph (todo_node (free_text))))
+
+
+==================
+consider aggregate option
+==================
+
+[consider:
+    {slot:Subject}
+    {options:
+        {world, moon:[set: X+=zzzz] }
+    }
+]
+
+
+---
+
+(source_file)
+
+
+==================
+single curly qoute breaking free text
+==================
+
+
+[todo: it’s a bug]
+
+---
+(source_file (decision_graph (todo_node (free_text))))
+
+==================
+single whatever this is breaking free text
+==================
+
+
+[todo: it;s a bug]
+
 ---
 (source_file (decision_graph (todo_node (free_text))))
