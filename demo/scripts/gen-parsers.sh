@@ -8,4 +8,4 @@ set -e
 # Build parsers
 ./node_modules/.bin/tree-sitter build-wasm ./node_modules/tree-sitter-decisiongraph
 
-mv *.wasm parsers
+mv *.wasm parser
