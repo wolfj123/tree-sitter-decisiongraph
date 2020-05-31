@@ -6,7 +6,7 @@
   "dependencies": {
     "tree-sitter": "^0.16.0",
     "tree-sitter-cli": "^0.16.5",
-    "tree-sitter-decisiongraph": "^0.2.0",
+    "tree-sitter-decisiongraph": "^1.0.0",
     "web-tree-sitter": "^0.16.2"
   },
   "devDependencies": {

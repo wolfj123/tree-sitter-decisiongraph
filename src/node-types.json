@@ -311,16 +311,6 @@
     }
   },
   {
-    "type": "free_text",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "free_text_no_end_bracket",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "import_node",
     "named": true,
     "fields": {},
@@ -739,7 +729,15 @@
     "named": true
   },
   {
+    "type": "free_text",
+    "named": true
+  },
+  {
     "type": "free_text_no_colon",
+    "named": true
+  },
+  {
+    "type": "free_text_no_end_bracket",
     "named": true
   },
   {

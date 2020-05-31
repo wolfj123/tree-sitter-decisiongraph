@@ -85,6 +85,16 @@ single qoute breaking free text
 (source_file (decision_graph (todo_node (free_text_no_end_bracket))))
 
 ==================
+single special qoute breaking free text
+==================
+
+
+[todo: it`s a bug]
+
+---
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))
+
+==================
 free text unable to handle colon
 ==================
 
