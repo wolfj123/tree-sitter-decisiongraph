@@ -737,7 +737,8 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == '^' ||
           lookahead == '_' ||
           ('a' <= lookahead && lookahead <= 'z') ||
-          lookahead == '~') ADVANCE(89);
+          lookahead == '~' ||
+          lookahead == 8217) ADVANCE(89);
       END_STATE();
     case 7:
       if (lookahead == '<') ADVANCE(2);
@@ -1119,7 +1120,8 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == '^' ||
           lookahead == '_' ||
           ('a' <= lookahead && lookahead <= 'z') ||
-          lookahead == '~') ADVANCE(89);
+          lookahead == '~' ||
+          lookahead == 8217) ADVANCE(89);
       END_STATE();
     case 90:
       ACCEPT_TOKEN(anon_sym_ask);
