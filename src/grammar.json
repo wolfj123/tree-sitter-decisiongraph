@@ -97,7 +97,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "free_text"
+              "name": "free_text_no_end_bracket"
             },
             {
               "type": "BLANK"

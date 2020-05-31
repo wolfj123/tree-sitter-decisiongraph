@@ -45,7 +45,7 @@ module.exports = grammar({
       ),
 
     todo_node: $ => seq(
-      "[", optional($.node_id), "todo", ":", optional($.free_text), "]"
+      "[", optional($.node_id), "todo", ":", optional($.free_text_no_end_bracket), "]"
     ),
 
     //free_text: $ => /([a-zA-Z0-9._,/~?!()@#$%^&*_+-]|[a-zA-Z0-9._,/~?!()@#$%^&*_+-]\s[a-zA-Z0-9._,/~?!()@#$%^&*_+-])+/,
