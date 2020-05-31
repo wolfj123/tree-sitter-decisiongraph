@@ -9,9 +9,54 @@ answers with free text of 4 words
     {1 2 3 4: [todo:]}}]
 
 ---
-(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (todo_node))) 
-(answer_sub_node (free_text) (decision_graph (todo_node)))))))
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (decision_graph (todo_node))) 
+(answer_sub_node (free_text_no_colon) (decision_graph (todo_node)))))))
 
+
+==================
+answers with free text with several spaces
+==================
+
+[ask:
+  {text: txt     txt}
+  {answers:
+    {y:[todo:]}
+    {1 2 3 4: [todo:]}}]
+
+---
+(source_file (decision_graph (ask_node (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (decision_graph (todo_node))) 
+(answer_sub_node (free_text_no_colon) (decision_graph (todo_node)))))))
+
+
+==================
+ask node
+==================
+
+[ask:
+	{text: dasasd}
+  {terms:
+    { yo [yo]: sometext}}
+  {answers:
+    {no: [todo: tmp] }}]
+
+---
+
+ (source_file (decision_graph (ask_node (text_sub_node (free_text)) (terms_sub_node (term_sub_node (free_text_no_colon) (free_text))) (answers_sub_node 
+ (answer_sub_node (free_text_no_colon) (decision_graph (todo_node (free_text_no_end_bracket))))))))
+
+==================
+ask big text from ref
+==================
+
+[>ESRA1< ask:
+	{text: there is more text:
+   * National Center for Education Research [NCER] - http://ies.ed.gov/ncer/projects/
+		}
+{answers:
+		{yes:[todo:idk]}}]
+
+---
+(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (decision_graph (todo_node (free_text_no_end_bracket))))))))
 
 ==================
 empty answer should be allowed
@@ -26,7 +71,7 @@ empty answer should be allowed
 ]
 
 ---
-(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (comment))))))
+(source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (comment))))))
 
 
 ==================
@@ -37,7 +82,51 @@ single qoute breaking free text
 [todo: it's a bug]
 
 ---
-(source_file (decision_graph (todo_node (free_text))))
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))
+
+==================
+free text unable to handle colon
+==================
+
+[ todo: this is a free:text]
+---
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))
 
 
+==================
+consider aggregate option
+==================
 
+[consider:
+    {slot:Subject}
+    {options:
+        {world, moon:[set: X+=zzzz] }
+    }
+]
+
+
+---
+
+(source_file (decision_graph (consider_node (slot_sub_node (slot_reference (slot_identifier))) (consider_options_sub_node (consider_option_sub_node (slot_value) 
+(slot_value) (decision_graph (set_node (assignment_slot (aggregate_assignment_slot (slot_reference (slot_identifier)) (slot_value))))))))))
+
+
+==================
+single curly qoute breaking free text
+==================
+
+
+[todo: it’s a bug]
+
+---
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))
+
+==================
+single whatever this is breaking free text
+==================
+
+
+[todo: it;s a bug]
+
+---
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))

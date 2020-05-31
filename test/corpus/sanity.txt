@@ -15,7 +15,7 @@ sanity todo 2
 
 ---
 
-(source_file (decision_graph (todo_node (free_text))))
+(source_file (decision_graph (todo_node (free_text_no_end_bracket))))
 
 
 ==================
@@ -45,7 +45,7 @@ sanity ask node
                 (free_text)) 
             (answers_sub_node 
                 (answer_sub_node 
-                    (free_text) 
+                    (free_text_no_colon) 
                     (decision_graph 
                         (todo_node)))))))
                         
@@ -61,7 +61,7 @@ sanity ask node yes no
 
 ---
 
- (source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text) (decision_graph (end_node)))))))
+ (source_file (decision_graph (ask_node (node_id (node_id_value)) (text_sub_node (free_text)) (answers_sub_node (answer_sub_node (free_text_no_colon) (decision_graph (end_node)))))))
 
 
 
@@ -135,7 +135,7 @@ sanity reject node
 
 ---
 
-(source_file (decision_graph (reject_node (free_text))))
+(source_file (decision_graph (reject_node (free_text_no_end_bracket))))
 
 
 ==================
