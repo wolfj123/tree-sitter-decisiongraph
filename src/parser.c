@@ -732,7 +732,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == 8288 ||
           lookahead == 65279) SKIP(6)
       if (lookahead == '!' ||
-          ('#' <= lookahead && lookahead <= '9') ||
+          ('#' <= lookahead && lookahead <= ';') ||
           ('?' <= lookahead && lookahead <= 'Z') ||
           lookahead == '^' ||
           lookahead == '_' ||
@@ -1114,6 +1114,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == ' ') ADVANCE(90);
       if (lookahead == '!' ||
           ('#' <= lookahead && lookahead <= '9') ||
+          lookahead == ';' ||
           ('?' <= lookahead && lookahead <= 'Z') ||
           lookahead == '^' ||
           lookahead == '_' ||
@@ -1124,6 +1125,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(aux_sym_free_text_token1);
       if (lookahead == '!' ||
           ('#' <= lookahead && lookahead <= '9') ||
+          lookahead == ';' ||
           ('?' <= lookahead && lookahead <= 'Z') ||
           lookahead == '^' ||
           lookahead == '_' ||
