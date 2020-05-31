@@ -316,11 +316,6 @@
     "fields": {}
   },
   {
-    "type": "free_text_no_colon",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "free_text_no_end_bracket",
     "named": true,
     "fields": {}
@@ -741,6 +736,10 @@
   },
   {
     "type": "file_path",
+    "named": true
+  },
+  {
+    "type": "free_text_no_colon",
     "named": true
   },
   {
