@@ -31,7 +31,7 @@
           "named": true
         },
         {
-          "type": "free_text",
+          "type": "free_text_no_colon",
           "named": true
         }
       ]
@@ -338,7 +338,7 @@
       "required": false,
       "types": [
         {
-          "type": "free_text",
+          "type": "free_text_no_end_bracket",
           "named": true
         },
         {
@@ -415,7 +415,7 @@
       "required": false,
       "types": [
         {
-          "type": "free_text",
+          "type": "free_text_no_end_bracket",
           "named": true
         },
         {
@@ -533,6 +533,10 @@
         {
           "type": "free_text",
           "named": true
+        },
+        {
+          "type": "free_text_no_colon",
+          "named": true
         }
       ]
     }
@@ -584,7 +588,7 @@
       "required": false,
       "types": [
         {
-          "type": "free_text",
+          "type": "free_text_no_end_bracket",
           "named": true
         },
         {
@@ -726,6 +730,14 @@
   },
   {
     "type": "free_text",
+    "named": true
+  },
+  {
+    "type": "free_text_no_colon",
+    "named": true
+  },
+  {
+    "type": "free_text_no_end_bracket",
     "named": true
   },
   {
